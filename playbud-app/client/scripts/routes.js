@@ -60,6 +60,15 @@ function config($stateProvider, $urlRouterProvider) {
         }
       }
     })
+    .state('tab.progress', {
+      url: '/progress',
+      views: {
+        'tab-progress': {
+          templateUrl: 'client/templates/progress.html',
+          controller: 'ProgressCtrl as progress'
+        }
+      }
+    })
     .state('tab.play-ideas', {
       url: '/play-ideas',
       views: {
@@ -75,6 +84,15 @@ function config($stateProvider, $urlRouterProvider) {
         'tab-evaluate': {
           templateUrl: 'client/templates/evaluate.html',
           controller: 'EvaluateCtrl as evaluate'
+        }
+      }
+    })
+    .state('tab.account', {
+      url: '/account',
+      views: {
+        'tab-account': {
+          templateUrl: 'client/templates/account.html',
+          controller: 'AccountCtrl as account'
         }
       }
     });
