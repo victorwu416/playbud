@@ -59,6 +59,24 @@ function config($stateProvider, $urlRouterProvider) {
           controller: 'SettingsCtrl as settings',
         }
       }
+    })
+    .state('tab.play-ideas', {
+      url: '/play-ideas',
+      views: {
+        'tab-play-ideas': {
+          templateUrl: 'client/templates/play-ideas.html',
+          controller: 'PlayIdeasCtrl as playIdeas'
+        }
+      }
+    })
+    .state('tab.evaluate', {
+      url: '/evaluate',
+      views: {
+        'tab-evaluate': {
+          templateUrl: 'client/templates/evaluate.html',
+          controller: 'EvaluateCtrl as evaluate'
+        }
+      }
     });
 
   $urlRouterProvider.otherwise('tab/chats');
