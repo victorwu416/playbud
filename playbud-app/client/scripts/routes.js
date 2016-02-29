@@ -97,7 +97,7 @@ function config($stateProvider, $urlRouterProvider) {
       }
     });
 
-  $urlRouterProvider.otherwise('tab/chats');
+  $urlRouterProvider.otherwise('tab/progress');
 
   ////////////
 
