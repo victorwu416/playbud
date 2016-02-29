@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/osx,windows,linux,meteorjs,node
 
 ### OSX ###
@@ -112,4 +111,3 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
-
