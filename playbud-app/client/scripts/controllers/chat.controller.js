@@ -1,5 +1,5 @@
 angular
-  .module('Whatsapp')
+  .module('Playbud')
   .controller('ChatCtrl', ChatCtrl);
 
 function ChatCtrl ($scope, $reactive, $stateParams, $ionicScrollDelegate, $timeout, $ionicPopup, $log) {

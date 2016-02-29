@@ -1,5 +1,5 @@
 angular
-  .module('Whatsapp')
+  .module('Playbud')
   .directive('input', input);
 
 // The directive enable sending message when tapping return

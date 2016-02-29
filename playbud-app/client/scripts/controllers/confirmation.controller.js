@@ -1,5 +1,5 @@
 angular
-  .module('Whatsapp')
+  .module('Playbud')
   .controller('ConfirmationCtrl', ConfirmationCtrl);
 
 function ConfirmationCtrl($scope, $reactive, $state, $ionicPopup, $log) {

@@ -1,5 +1,5 @@
 angular
-  .module('Whatsapp')
+  .module('Playbud')
   .filter('chatPicture', chatPicture);
 
 function chatPicture () {

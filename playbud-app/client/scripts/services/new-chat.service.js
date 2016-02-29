@@ -1,5 +1,5 @@
 angular
-  .module('Whatsapp')
+  .module('Playbud')
   .service('NewChat', NewChat);
 
 function NewChat($rootScope, $ionicModal) {

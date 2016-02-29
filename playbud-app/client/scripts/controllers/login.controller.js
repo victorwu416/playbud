@@ -1,5 +1,5 @@
 angular
-  .module('Whatsapp')
+  .module('Playbud')
   .controller('LoginCtrl', LoginCtrl);
 
 function LoginCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log) {

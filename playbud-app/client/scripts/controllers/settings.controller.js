@@ -1,5 +1,5 @@
 angular
-  .module('Whatsapp')
+  .module('Playbud')
   .controller('SettingsCtrl', SettingsCtrl);
 
 function SettingsCtrl($scope, $reactive, $state) {

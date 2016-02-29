@@ -1,5 +1,5 @@
 angular
-  .module('Whatsapp', [
+  .module('Playbud', [
     'angular-meteor',
     'ionic',
     'angularMoment'
@@ -13,5 +13,5 @@ else {
 }
 
 function onReady() {
-  angular.bootstrap(document, ['Whatsapp']);
-} 
+  angular.bootstrap(document, ['Playbud']);
+}

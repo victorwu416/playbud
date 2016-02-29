@@ -1,5 +1,5 @@
 angular
-  .module('Whatsapp')
+  .module('Playbud')
   .filter('calendar', calendar);
 
 function calendar () {

@@ -1,5 +1,5 @@
 angular
-  .module('Whatsapp')
+  .module('Playbud')
   .controller('NewChatCtrl', NewChatCtrl);
 
 function NewChatCtrl($scope, $reactive, $state, NewChat) {

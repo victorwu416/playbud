@@ -1,5 +1,5 @@
 angular
-  .module('Whatsapp')
+  .module('Playbud')
   .config(config);
 
 function config($stateProvider, $urlRouterProvider) {

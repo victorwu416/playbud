@@ -1,5 +1,5 @@
 angular
-  .module('Whatsapp')
+  .module('Playbud')
   .controller('ProfileCtrl', ProfileCtrl);
 
 function ProfileCtrl ($scope, $reactive, $state, $ionicPopup, $log, $ionicLoading) {

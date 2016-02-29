@@ -1,5 +1,5 @@
 angular
-  .module('Whatsapp')
+  .module('Playbud')
   .run(run);
 
 function run($rootScope, $state) {
