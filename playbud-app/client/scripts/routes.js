@@ -78,6 +78,15 @@ function config($stateProvider, $urlRouterProvider) {
         }
       }
     })
+    .state('tab.play-idea', {
+      url: '/play-ideas/:playIdeaId',
+      views: {
+        'tab-play-ideas': {
+          templateUrl: 'client/templates/play-idea.html',
+          controller: 'PlayIdeaCtrl as playIdea'
+        }
+      }
+    })
     .state('tab.evaluate', {
       url: '/evaluate',
       views: {
@@ -100,7 +109,7 @@ function config($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('tab/progress');
 
   ////////////
-  // 
+  //
   // function isAuthorized($q) {
   //   let deferred = $q.defer();
   //
