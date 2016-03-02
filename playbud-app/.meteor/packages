@@ -20,6 +20,7 @@ momentjs:moment
 fourseven:scss
 jasonaibrahim:angular-moment
 check
-okland:accounts-phone
 reywood:publish-composite
 okland:camera-ui
+accounts-password
+dotansimha:accounts-ui-angular

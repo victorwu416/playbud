@@ -1,8 +1,9 @@
 angular
   .module('Playbud', [
+    'accounts.ui',
     'angular-meteor',
-    'ionic',
-    'angularMoment'
+    'angularMoment',
+    'ionic'
   ]);
 
 if (Meteor.isCordova) {
