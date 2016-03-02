@@ -96,12 +96,12 @@ function config($stateProvider, $urlRouterProvider) {
         }
       }
     })
-    .state('tab.account', {
-      url: '/account',
+    .state('tab.playbud-account', {
+      url: '/playbud-account',
       views: {
-        'tab-account': {
-          templateUrl: 'client/templates/account.html',
-          controller: 'AccountCtrl as account'
+        'tab-playbud-account': {
+          templateUrl: 'client/templates/playbud-account.html',
+          controller: 'PlaybudAccountCtrl as playbudAccount'
         }
       }
     });
