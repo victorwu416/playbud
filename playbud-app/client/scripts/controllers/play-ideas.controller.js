@@ -2,10 +2,13 @@ angular
   .module('Playbud')
   .controller('PlayIdeasCtrl', PlayIdeasCtrl);
 
-function PlayIdeasCtrl ($scope, $reactive) {
+function PlayIdeasCtrl ($reactive, $scope) {
   $reactive(this).attach($scope);
 
-  this.hello = 'hello play ideas';
-
-  console.log('PlayIdeasCtrl');
+  this.subscribe('appropriateSkills');
+  this.helpers({
+    skills() {
+      return Skills.find({});
+    }
+  });
 }

@@ -1,21 +1,17 @@
 <ion-view view-title="Play Ideas">
   <ion-content class="play-ideas">
-    <ion-list>
-      <ion-item href="#/tab/play-ideas/123" class="item1">
-        Play Idea 1
-      </ion-item>
-      <ion-item href="#/tab/play-ideas/123" class="item2">
-        Play Idea 2
-      </ion-item>
-      <ion-item href="#/tab/play-ideas/123" class="item3">
-        Play Idea 3
-      </ion-item>
-      <ion-item href="#/tab/play-ideas/123" class="item4">
-        Play Idea 4
-      </ion-item>
-      <ion-item href="#/tab/play-ideas/123" class="item5">
-        Play Idea 5
-      </ion-item>
-    </ion-list>
+    <div ng-if="!$root.currentUser">
+      Sign in to see play ideas
+    </div>
+    <div ng-if="$root.currentUser">
+      <ion-list>
+        <ion-item
+          ng-repeat="skill in playIdeas.skills"
+          href="#/tab/play-ideas/{{skill._id}}"
+          style="background-image: url({{skill.imageUrl}})">
+          {{skill.shortDescription}}
+        </ion-item>
+      </ion-list>
+  </div>
   </ion-content>
 </ion-view>

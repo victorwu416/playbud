@@ -2,10 +2,15 @@ angular
   .module('Playbud')
   .controller('PlayIdeaCtrl', PlayIdeaCtrl);
 
-function PlayIdeaCtrl ($scope, $reactive) {
+function PlayIdeaCtrl ($reactive, $scope, $stateParams) {
   $reactive(this).attach($scope);
 
-  this.hello = 'hello play idea';
+  var skillId = $stateParams.skillId;
 
-  console.log('PlayIdeaCtrl');
+  this.subscribe('appropriateSkills');
+  this.helpers({
+    skill() {
+      return Skills.findOne(skillId);
+    }
+  });
 }

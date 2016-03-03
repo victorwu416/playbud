@@ -79,7 +79,7 @@ function config($stateProvider, $urlRouterProvider) {
       }
     })
     .state('tab.play-idea', {
-      url: '/play-ideas/:playIdeaId',
+      url: '/play-ideas/:skillId',
       views: {
         'tab-play-ideas': {
           templateUrl: 'client/templates/play-idea.html',

@@ -1,3 +1,11 @@
+Meteor.publish('appropriateSkills', function () {
+  if (!this.userId) {
+    return;
+  }
+  // TODO: Logic to publish only appropriateSkills for this Playbud child
+  return Skills.find({});
+});
+
 // Meteor.publish('users', function () {
 //   return Meteor.users.find({}, { fields: { profile: 1 } });
 // });
