@@ -1,6 +1,10 @@
 <ion-view view-title="Progress">
-  <ion-content>
-    Progress
-    {{progress.hello}}
-  </ion-content>
+  <ion-content class="play-ideas">
+    <div ng-if="!$root.currentUser">
+      Sign in to see progress
+    </div>
+    <div ng-if="$root.currentUser">
+      <img ng-src="http://localhost:3000/progress.png">
+    </div>
+  </ion-content>  
 </ion-view>
