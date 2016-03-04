@@ -24,7 +24,9 @@ Meteor.startup(function () {
 
   Skills.remove({});
 
-  var skill = {
+  var skill;
+
+  skill = {
      shortDescription: 'Build a tower',
      longDescription: 'Build a tower with this and that',
      imageUrl: '/image1.png'

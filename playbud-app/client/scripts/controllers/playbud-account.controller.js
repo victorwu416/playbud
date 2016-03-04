@@ -5,7 +5,21 @@ angular
 function PlaybudAccountCtrl ($scope, $reactive) {
   $reactive(this).attach($scope);
 
-  this.hello = 'hello playbud account';
+  this.subscribe('users');
+  this.helpers({
+    parent() {
+      return Meteor.users.findOne(Meteor.userId()).parent;
+    }
+  });
 
-  console.log('PlaybudAccountCtrl');
+  this.updateChildFirstName = updateChildFirstName;
+  this.updateChildDateOfBirth = updateChildDateOfBirth;
+
+  function updateChildFirstName () {
+    Meteor.call('updateChildFirstName', this.parent.childFirstName);
+  }
+
+  function updateChildDateOfBirth () {
+    Meteor.call('updateChildDateOfBirth', this.parent.childDateOfBirth);
+  }
 }
