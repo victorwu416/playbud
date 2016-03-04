@@ -1,6 +1,10 @@
 <ion-view view-title="Evaluate">
-  <ion-content>
-    Evaluate
-    {{evaluate.hello}}
+  <ion-content class="play-ideas">
+    <div ng-if="!$root.currentUser">
+      Sign in to evaluate
+    </div>
+    <div ng-if="$root.currentUser">
+      Evaluate your chlild
+    </div>
   </ion-content>
 </ion-view>
