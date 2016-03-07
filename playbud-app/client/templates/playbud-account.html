@@ -6,8 +6,8 @@
       Sign in to update account
     </div>
     <div ng-if="$root.currentUser">
-      <input ng-model="playbudAccount.parent.childFirstName" on-return="playbudAccount.updateChildFirstName()" type="text" placeholder="Child's first name">
-      <input ng-model="playbudAccount.parent.childDateOfBirth" on-return="playbudAccount.updateChildDateOfBirth()" type="date">
+      <input ng-model="$root.currentUser.parent.childFirstName" on-return="$root.currentUser.updateChildFirstName()" type="text" placeholder="Child's first name">
+      <input ng-model="$root.currentUser.parent.childDateOfBirth" on-return="$root.currentUser.updateChildDateOfBirth()" type="date">
     </div>
 
   </ion-content>

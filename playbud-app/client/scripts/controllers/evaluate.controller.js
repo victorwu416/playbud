@@ -4,8 +4,4 @@ angular
 
 function EvaluateCtrl ($scope, $reactive) {
   $reactive(this).attach($scope);
-
-  this.hello = 'hello evaluate';
-
-  console.log('EvaluateCtrl');
 }

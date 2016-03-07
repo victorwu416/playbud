@@ -6,11 +6,6 @@ function PlaybudAccountCtrl ($scope, $reactive) {
   $reactive(this).attach($scope);
 
   this.subscribe('users');
-  this.helpers({
-    parent() {
-      return Meteor.users.findOne(Meteor.userId()).parent;
-    }
-  });
 
   this.updateChildFirstName = updateChildFirstName;
   this.updateChildDateOfBirth = updateChildDateOfBirth;
