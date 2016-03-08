@@ -1,10 +1,33 @@
 <ion-view view-title="Evaluate">
-  <ion-content class="play-ideas">
+  <ion-content class="evaluate">
     <div ng-if="!$root.currentUser">
       Sign in to evaluate
     </div>
     <div ng-if="$root.currentUser">
-      Evaluate your child
+
+      <div ng-show="evaluate.showStart">
+        <button class="button button-block button-positive" ng-click="evaluate.startEvaluation()">Start</button>
+      </div>
+
+      <div ng-show="evaluate.showQuestion">
+        <div class="card">
+          <div class="item item-text-wrap">
+            {{evaluate.evaluationSkills[evaluate.currentQuestionIndex].question}}            
+          </div>
+        </div>
+
+        <div class="card">
+          <ion-list>
+            <ion-radio ng-model="choice" ng-value="'A'">Easily</ion-radio>
+            <ion-radio ng-model="choice" ng-value="'B'">With difficulty</ion-radio>
+            <ion-radio ng-model="choice" ng-value="'C'">Unable</ion-radio>
+            <ion-radio ng-model="choice" ng-value="'D'">Did not try</ion-radio>
+          </ion-list>
+        </div>
+
+        <button class="button button-block button-positive" ng-click="evaluate.nextQuestion()">Next</button>
+      </div>
+
     </div>
   </ion-content>
 </ion-view>

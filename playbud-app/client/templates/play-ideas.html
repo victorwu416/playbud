@@ -6,7 +6,7 @@
     <div ng-if="$root.currentUser">
       <ion-list>
         <ion-item
-          ng-repeat="skill in playIdeas.skills"
+          ng-repeat="skill in playIdeas.nextSkills"
           href="#/tab/play-ideas/{{skill._id}}"
           style="background-image: url({{skill.imageUrl}})">
           {{skill.shortDescription}}

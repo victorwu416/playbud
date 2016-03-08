@@ -1,11 +1,13 @@
-Meteor.publish('users', function () {
-  return Meteor.users.find({}, { fields: { parent: 1 } });
+Meteor.publish('currentUser', function () {
+  if (!this.userId) {
+    return null;
+  }
+  return Meteor.users.find({_id: this.userId}, { fields: { parent: 1 } });
 });
 
-Meteor.publish('appropriateSkills', function () {
+Meteor.publish('nextSkills', function () {
   if (!this.userId) {
-    return;
+    return null;
   }
-  // TODO: Logic to publish only appropriateSkills for this Playbud child
   return Skills.find({});
 });

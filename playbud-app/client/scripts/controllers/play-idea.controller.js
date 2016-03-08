@@ -7,7 +7,7 @@ function PlayIdeaCtrl ($reactive, $scope, $stateParams) {
 
   var skillId = $stateParams.skillId;
 
-  this.subscribe('appropriateSkills');
+  this.subscribe('nextSkills');
   this.helpers({
     skill() {
       return Skills.findOne(skillId);

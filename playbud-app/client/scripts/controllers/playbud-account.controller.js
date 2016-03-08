@@ -5,7 +5,7 @@ angular
 function PlaybudAccountCtrl ($scope, $reactive) {
   $reactive(this).attach($scope);
 
-  this.subscribe('users');
+  this.subscribe('currentUser');
 
   this.updateChildFirstName = updateChildFirstName;
   this.updateChildDateOfBirth = updateChildDateOfBirth;
