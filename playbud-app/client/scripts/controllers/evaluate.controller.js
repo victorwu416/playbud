@@ -5,37 +5,49 @@ angular
 function EvaluateCtrl ($scope, $reactive) {
   $reactive(this).attach($scope);
 
-  console.log('evaluate control');
-
   this.subscribe('nextSkills');
   this.helpers({
     nextSkills() {
       return Skills.find({});
+    },
+    updatedSkills() {
+      return Session.get('updatedSkills');
     }
   });
 
   this.showStart = true;
   this.showQuestion = false;
+  this.showResults = false;
 
-  this.startEvaluation = startEvaluation;
-  this.nextQuestion = nextQuestion;
-
-  function startEvaluation () {
+  this.start = function () {
     this.evaluationSkills = [];
     angular.copy(this.nextSkills, this.evaluationSkills);
     this.currentQuestionIndex = -1;
-    this.showStart = false;
-
-    console.log(this.evaluationSkills);
-
     this.nextQuestion();
   }
 
-  function nextQuestion() {
+  this.nextQuestion = function () {
+    this.showStart = false;
     this.showQuestion = true;
+    this.showResults = false;
     this.currentQuestionIndex++;
+    if (this.currentQuestionIndex >= this.evaluationSkills.length) {
+      Session.set('updatedSkills', []);
+      this.showStart = false;
+      this.showQuestion = false;
+      this.showResults = true;
+      results(this.evaluationSkills);
+    }
   }
 
-
+  function results (evaluationSkills) {
+    Meteor.call('getUpdatedSkills', evaluationSkills, function (error, result) {
+      if (error) {
+        throw new Meteor.Error('method-call-getUpdatedSkills', 'Error getting updated skills');
+      } else {
+        Session.set('updatedSkills', result);
+      }
+    });
+  }
 
 }
