@@ -15,29 +15,44 @@ function EvaluateCtrl ($scope, $reactive) {
     }
   });
 
-  this.showStart = true;
-  this.showQuestion = false;
-  this.showResults = false;
+  this.toggleSection = toggleSection;
+  this.start = start;
+  this.nextQuestion = nextQuestion;
+  this.done = done;
 
-  this.start = function () {
+  this.toggleSection('start');
+
+  function toggleSection (section) {
+    this.showStart = false;
+    this.showQuestion = false
+    this.showResults = false;
+    switch (section) {
+      case 'start': this.showStart = true; break;
+      case 'question': this.showQuestion = true; break;
+      case 'results': this.showResults = true; break;
+      default: break;
+    }
+  }
+
+  function start () {
     this.evaluationSkills = [];
     angular.copy(this.nextSkills, this.evaluationSkills);
     this.currentQuestionIndex = -1;
     this.nextQuestion();
   }
 
-  this.nextQuestion = function () {
-    this.showStart = false;
-    this.showQuestion = true;
-    this.showResults = false;
+  function nextQuestion () {
+    this.toggleSection('question');
     this.currentQuestionIndex++;
     if (this.currentQuestionIndex >= this.evaluationSkills.length) {
       Session.set('updatedSkills', []);
-      this.showStart = false;
-      this.showQuestion = false;
-      this.showResults = true;
+      this.toggleSection('results');
       results(this.evaluationSkills);
     }
+  }
+
+  function done () {
+    this.toggleSection('start');
   }
 
   function results (evaluationSkills) {
