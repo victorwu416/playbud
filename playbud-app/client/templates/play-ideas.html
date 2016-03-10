@@ -7,7 +7,7 @@
       <ion-list>
         <ion-item
           ng-repeat="skill in playIdeas.nextSkills"
-          href="#/tab/play-ideas/{{skill._id}}"
+          href="#/tab/play-ideas/{{skill._id.valueOf()}}"
           style="background-image: url({{skill.imageUrl}})">
           {{skill.shortDescription}}
         </ion-item>
