@@ -1,18 +1,25 @@
 Meteor.methods({
-  updateChildFirstName (childFirstName) {
-    check(childFirstName, String);
-    if (!this.userId) {
-      throw new Meteor.Error('not-logged-in', 'Must be logged in to update child first name');
+  updateParent (parent) {    
+    if (parent.childDateOfBirth) {
+      check(parent, {childFirstName: String, childDateOfBirth: Date});
+    } else {
+      check(parent, {childFirstName: String, childDateOfBirth: String});
     }
-    return Meteor.users.update(this.userId, { $set: { 'parent.childFirstName': childFirstName } });
-  },
-  updateChildDateOfBirth (childDateOfBirth) {
-    check(childFirstName, Date);
     if (!this.userId) {
-      throw new Meteor.Error('not-logged-in', 'Must be logged in to update child date of birth');
+      throw new Meteor.Error('not-logged-in', 'Must be logged in to update parent');
     }
-    return Meteor.users.update(this.userId, { $set: { 'parent.childDateOfBirth': childDateOfBirth } });
+    return Parents.upsert(
+      {userId: this.userId},
+        {
+          $set: {
+            userId: this.userId,
+            childFirstName: parent.childFirstName,
+            childDateOfBirth: parent.childDateOfBirth
+          }
+        }
+      );
   },
+
   getUpdatedSkills (skills) {
     check(skills, Array);
     if (!this.userId) {

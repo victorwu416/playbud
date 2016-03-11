@@ -5,16 +5,27 @@ angular
 function PlaybudAccountCtrl ($scope, $reactive) {
   $reactive(this).attach($scope);
 
-  this.subscribe('currentUser');
+  this.subscribe('parent');
+  this.helpers({
+    parent() {
+      var parent = Parents.findOne({userId: Meteor.userId()});
+      if (!parent) {
+        parent = {
+          childFirstName: '',
+          childDateOfBirth: ''
+        };
+      }
+      return parent;
+    }
+  });
 
-  this.updateChildFirstName = updateChildFirstName;
-  this.updateChildDateOfBirth = updateChildDateOfBirth;
+  this.updateParent = updateParent;
 
-  function updateChildFirstName () {
-    Meteor.call('updateChildFirstName', this.parent.childFirstName);
-  }
-
-  function updateChildDateOfBirth () {
-    Meteor.call('updateChildDateOfBirth', this.parent.childDateOfBirth);
+  function updateParent () {
+    var updatedParent = {
+      childFirstName: this.parent.childFirstName,
+      childDateOfBirth: this.parent.childDateOfBirth
+    }
+    Meteor.call('updateParent', updatedParent);
   }
 }
