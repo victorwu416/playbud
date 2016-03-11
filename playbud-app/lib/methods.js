@@ -1,5 +1,5 @@
 Meteor.methods({
-  updateParent (parent) {    
+  updateParent (parent) {
     if (parent.childDateOfBirth) {
       check(parent, {childFirstName: String, childDateOfBirth: Date});
     } else {
@@ -18,6 +18,16 @@ Meteor.methods({
           }
         }
       );
+  },
+
+  submitAnswer (skill, answer) {
+    check(skill, Object);
+    check(skill._id.valueOf(), String);
+    check(answer, String);
+    if (!this.userId) {
+      throw new Meteor.Error('not-logged-in', 'Must be logged in to insert answer option value');
+    }
+    return Answers.insert({skillId: skill._id.valueOf(), userId: this.userId, answer: answer});
   },
 
   getUpdatedSkills (skills) {

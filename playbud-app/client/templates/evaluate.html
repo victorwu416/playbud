@@ -18,35 +18,35 @@
 
         <div class="card">
           <ion-list>
-            <ion-radio ng-model="choice" ng-value="'A'">Easily</ion-radio>
-            <ion-radio ng-model="choice" ng-value="'B'">With difficulty</ion-radio>
-            <ion-radio ng-model="choice" ng-value="'C'">Unable</ion-radio>
-            <ion-radio ng-model="choice" ng-value="'D'">Did not try</ion-radio>
+            <ion-radio
+              ng-repeat="answerOption in evaluate.answerOptions"
+              ng-value="answerOption.value"
+              ng-model="evaluate.selectedAnswerOptionValue"
+              ng-change="evaluate.nextButtonDisabled = false"
+              >
+              {{answerOption.text}}
+            </ion-radio>
           </ion-list>
         </div>
 
         <!-- TODO: Change the text of the button to say last/finish/go to results if last question -->
         <button
           class="button button-block button-positive"
-          ng-click="evaluate.nextQuestion()">
+          ng-disabled="evaluate.nextButtonDisabled"
+          ng-click="evaluate.submitAnswer()">
           Next
         </button>
       </div>
 
       <div ng-show="evaluate.showResults">
-        <div ng-show="evaluate.updatedSkills.length===0">
-          TODO: Find and style a nice loading mask here.
-        </div>
-        <div ng-show="evaluate.updatedSkills.length!==0">
-          <div class="list card">
-            <div
-              ng-repeat="skill in evaluate.updatedSkills"
-              class="item">
-              {{skill.shortDescription}}
-            </div>
+        <div class="list card">
+          <div
+            ng-repeat="skill in evaluate.updatedSkills"
+            class="item">
+            {{skill.shortDescription}}
           </div>
-          <button class="button button-block button-positive" ng-click="evaluate.done()">Done</button>
         </div>
+        <button class="button button-block button-positive" ng-click="evaluate.done()">Done</button>
       </div>
 
     </div>
