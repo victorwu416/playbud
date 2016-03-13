@@ -6,7 +6,7 @@
 
         <div class="item-group">
           <label class="item item-input" ng-class="{ 'has-error': signUpForm.$submitted && signUpForm.email.$invalid }">
-            <input type="email" name="email" ng-model="signup.email" placeholder="Email" required>
+            <input type="email" name="email" ng-model="signup.email" placeholder="Email" required email-available>
           </label>
           <div class="error" ng-messages="signUpForm.email.$error"
                ng-show="signUpForm.$submitted">

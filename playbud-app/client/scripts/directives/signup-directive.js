@@ -11,8 +11,13 @@ angular
           var email = modelValue || viewValue;
 
           Meteor.call('isEmailFound', email, function(err, data) {
-            //ctrl.$setValidity('emailAvailable',found);
-            defer.resolve();
+            if(data) {
+              defer.reject();
+            }
+            else {
+              defer.resolve();
+            }
+
           });
 
 
