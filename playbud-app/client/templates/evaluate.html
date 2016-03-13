@@ -1,10 +1,58 @@
 <ion-view view-title="Evaluate">
-  <ion-content class="play-ideas">
+  <ion-content class="evaluate">
     <div ng-if="!$root.currentUser">
       Sign in to evaluate
     </div>
     <div ng-if="$root.currentUser">
-      Evaluate your chlild
+
+      <div ng-show="evaluate.section === 'start'">
+        <button class="button button-block button-positive" ng-click="evaluate.start()">Start</button>
+      </div>
+      <div ng-show="evaluate.section === 'question'">
+        <div class="card">
+          <div class="item item-text-wrap">
+            {{evaluate.currentQuestion.question}}
+          </div>
+        </div>
+
+        <div class="card">
+          <ion-list>
+            <ion-radio
+              ng-repeat="answerOption in evaluate.answerOptions"
+              ng-value="answerOption.value"
+              ng-model="evaluate.selectedAnswerOptionValue"
+              ng-change="evaluate.nextButtonDisabled = false"
+              >
+              {{answerOption.text}}
+            </ion-radio>
+          </ion-list>
+        </div>
+
+        <!-- TODO: Change the text of the button to say last/finish/go to results if last question -->
+        <button
+          class="button button-block button-positive"
+          ng-disabled="evaluate.nextButtonDisabled"
+          ng-click="evaluate.submitAnswer()">
+          Next
+        </button>
+      </div>
+
+      <div ng-show="evaluate.section === 'results'">
+        <div class="list card">
+          <div
+            ng-repeat="skill in evaluate.skillsWithAnswers"
+            class="item">
+            {{skill.shortDescription}}
+            <div
+              ng-repeat="answer in skill.answers">
+              {{answer.value}}
+            </div>
+          </div>
+        </div>
+
+        <button class="button button-block button-positive" ng-click="evaluate.done()">Done</button>
+      </div>
+
     </div>
   </ion-content>
 </ion-view>

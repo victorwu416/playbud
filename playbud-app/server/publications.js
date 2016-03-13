@@ -1,11 +1,13 @@
-Meteor.publish('users', function () {
-  return Meteor.users.find({}, { fields: { parent: 1 } });
+Meteor.publish('parent', function () {
+  if (!this.userId) {
+    throw new Meteor.Error('not-logged-in', 'Must be logged in to publish parent');
+  }
+  return Parents.find({userId: this.userId});
 });
 
-Meteor.publish('appropriateSkills', function () {
+Meteor.publish('nextSkills', function () {
   if (!this.userId) {
-    return;
+    throw new Meteor.Error('not-logged-in', 'Must be logged in to publish next skills');
   }
-  // TODO: Logic to publish only appropriateSkills for this Playbud child
-  return Skills.find({});
+  return Skills.find({}, {limit: 3}); // TODO: Logic to return next valid skills for this user.
 });

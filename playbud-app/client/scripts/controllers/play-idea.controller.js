@@ -5,12 +5,10 @@ angular
 function PlayIdeaCtrl ($reactive, $scope, $stateParams) {
   $reactive(this).attach($scope);
 
-  var skillId = $stateParams.skillId;
-
-  this.subscribe('appropriateSkills');
+  this.subscribe('nextSkills');
   this.helpers({
     skill() {
-      return Skills.findOne(skillId);
+      return Skills.findOne(new Meteor.Collection.ObjectID($stateParams.skillId));
     }
   });
 }

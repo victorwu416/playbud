@@ -5,9 +5,9 @@ angular
 function PlayIdeasCtrl ($reactive, $scope) {
   $reactive(this).attach($scope);
 
-  this.subscribe('appropriateSkills');
+  this.subscribe('nextSkills');
   this.helpers({
-    skills() {
+    nextSkills() {
       return Skills.find({});
     }
   });
