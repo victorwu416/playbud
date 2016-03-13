@@ -5,17 +5,15 @@ angular
 function EvaluateCtrl ($scope, $reactive) {
   $reactive(this).attach($scope);
 
-  this.subscribe('nextSkills');
   this.helpers({
     showStart() { return this.showStart ? this.showStart: false },
     showQuestion() { return this.showQuestion ? this.showQuestion : false; },
     showResults() { return this.showResults ? this.showResults : false; },
     nextButtonDisabled() { return this.nextButtonDisabled ? this.nextButtonDisabled : true; },
-    nextSkills() { return Skills.find({}); },
     evaluationSkills() { return this.evaluationSkills ? this.evaluationSkills : []; },
     currentQuestionIndex() { return this.currentQuestionIndex ? this.currentQuestionIndex : -1; },
     selectedAnswerOptionValue() { return this.selectedAnswerOptionValue ? this.selectedAnswerOptionValue : ''; },
-    updatedSkills() { return this.updatedSkills ? this.updatedSkills : []; },
+    skillsWithAnswers() { return this.skillsWithAnswers ? this.skillsWithAnswers : []; },
   });
 
   this.toggleSection = toggleSection;
@@ -44,9 +42,11 @@ function EvaluateCtrl ($scope, $reactive) {
   }
 
   function start () {
-    angular.copy(this.nextSkills, this.evaluationSkills);
-    this.currentQuestionIndex = -1;
-    nextQuestion(this);
+    this.subscribe('nextSkills', function () {
+      angular.copy(Skills.find({}).fetch(), this.evaluationSkills);
+      this.currentQuestionIndex = -1;
+      nextQuestion(this);
+    });
   }
 
   function submitAnswer () {
@@ -83,15 +83,14 @@ function EvaluateCtrl ($scope, $reactive) {
 
   function results (evaluateCtrl) {
     (function (evaluateCtrl) {
-      Meteor.call('getUpdatedSkills', evaluateCtrl.evaluationSkills, function (error, updatedSkills) {
+      Meteor.call('skillsWithAnswers', evaluateCtrl.evaluationSkills, function (error, skillsWithAnswers) {
         if (error) {
-          throw new Meteor.Error('method-call-getUpdatedSkills', 'Error getting updated skills');
+          throw new Meteor.Error('method-call-skillsWithAnswers', 'Error getting skills with answers');
         } else {
-          evaluateCtrl.updatedSkills = updatedSkills;
+          evaluateCtrl.skillsWithAnswers = skillsWithAnswers;
           evaluateCtrl.toggleSection('results');
         }
       });
     })(evaluateCtrl);
   }
-
 }

@@ -9,5 +9,5 @@ Meteor.publish('nextSkills', function () {
   if (!this.userId) {
     throw new Meteor.Error('not-logged-in', 'Must be logged in to publish next skills');
   }
-  return Skills.find({}); // TODO: Logic to return next valid skills for this user.
+  return Skills.find({}, {limit: 3}); // TODO: Logic to return next valid skills for this user.
 });
