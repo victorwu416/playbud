@@ -17,6 +17,7 @@ function LoginCtrl ($scope, $reactive, $state) {
         });
       }
       else {
+        // Make sure the profile is completed
         Meteor.call('isUserProfileCompleted', function(data) {
           if(data){
             $state.go("tab.progress");
