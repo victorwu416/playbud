@@ -1,13 +1,29 @@
 angular
   .module('Playbud')
-  .config(config);
+  .config(config)
+  .run(run);
+
+  function run($rootScope, $state) {
+
+      $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
+        if( error  === 'not authorized' ){
+            return $state.go( 'login' );
+        }
+      });
+  }
 
 function config($stateProvider, $urlRouterProvider) {
+
   $stateProvider
     .state('tab', {
       url: '/tab',
       abstract: true,
       templateUrl: 'client/templates/tabs.html',
+      resolve: {
+        'currentUser': function ($meteor) {
+          return $meteor.requireUser();
+        }
+      }
     })
     .state('tab.progress', {
       url: '/progress',
@@ -58,7 +74,22 @@ function config($stateProvider, $urlRouterProvider) {
       url: '/signup',
           templateUrl: 'client/templates/signup.html',
           controller: 'SignupCtrl as signup'
+    })
+    .state('login', {
+      url: '/login',
+          templateUrl: 'client/templates/login.html',
+          controller: 'LoginCtrl as login'
+    })
+    .state('user-profile', {
+      url: '/user-profile',
+          templateUrl: 'client/templates/user-profile.html',
+          controller: 'UserProfileCtrl as profile',
+          resolve: {
+            'currentUser': function ($meteor) {
+              return $meteor.requireUser();
+            }
+          }
     });
 
-  $urlRouterProvider.otherwise('tab/progress');
+  $urlRouterProvider.otherwise('login');
 }

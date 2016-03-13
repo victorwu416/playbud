@@ -1,69 +1,45 @@
 
 <form name="signUpForm" novalidate>
   <ion-view view-title="Sign Up">
-    <ion-content class="signup padding">
-      <div class="list">
+    <ion-content class="signUpForm padding">
+      <div class="list list-inset">
 
-        <div class="form-group" ng-class="{ 'has-error': signUpForm.$submitted && signUpForm.firstname.$invalid }">
-          <label class="item item-input">
-            <span class="input-label">First Name</span>
-            <input type="text" name="firstname" ng-model="user.firstname" required>
+        <div class="item-group">
+          <label class="item item-input" ng-class="{ 'has-error': signUpForm.$submitted && signUpForm.email.$invalid }">
+            <input type="email" name="email" ng-model="signup.email" placeholder="Email" required>
           </label>
-          <div class="help-block" ng-messages="signUpForm.firstname.$error"
-            ng-show="signUpForm.$submitted">
-            <p ng-if="signUpForm.firstname.$error.required">First Name is required.</p>
-          </div>
-        </div>
-
-        <div class="form-group" ng-class="{ 'has-error': signUpForm.$submitted && signUpForm.lastname.$invalid }">
-          <label class="item item-input">
-            <span class="input-label">Last Name</span>
-            <input type="text" name="lastname" ng-model="user.lastname" required>
-          </label>
-          <div class="help-block" ng-messages="signUpForm.lastname.$error"
-               ng-show="signUpForm.$submitted">
-            <p ng-if="signUpForm.lastname.$error.required">Last Name is required.</p>
-          </div>
-        </div>
-
-        <div class="form-group" ng-class="{ 'has-error': signUpForm.$submitted && signUpForm.email.$invalid }">
-          <label class="item item-input">
-            <span class="input-label">Email</span>
-              <input type="email" name="email" ng-model="user.email"
-              required>
-          </label>
-          <div class="help-block" ng-messages="signUpForm.email.$error"
+          <div class="error" ng-messages="signUpForm.email.$error"
                ng-show="signUpForm.$submitted">
             <p ng-if="signUpForm.email.$error.required">Email is required.</p>
             <p ng-if="signUpForm.email.$error.email">Email is invalid.</p>
+            <p ng-show="signUpForm.email.$error.emailAvailable">Email exists.</p>
           </div>
         </div>
 
-        <div class="form-group" ng-class="{ 'has-error': signUpForm.$submitted && signUpForm.password.$invalid }">
-          <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" name="password" ng-model="user.password" required>
+        <div class="item-group">
+          <label class="item item-input" ng-class="{ 'has-error': signUpForm.$submitted && signUpForm.password.$invalid }">
+            <input type="password" name="password" ng-model="signup.password" placeholder="Password" required>
           </label>
-          <div class="help-block" ng-messages="signUpForm.password.$error"
+          <div class="error" ng-messages="signUpForm.password.$error"
                ng-show="signUpForm.$submitted">
             <p ng-if="signUpForm.password.$error.required">Password is required.</p>
           </div>
         </div>
 
-        <div class="form-group" ng-class="{ 'has-error': signUpForm.$submitted && signUpForm.repassword.$invalid }">
-          <label class="item item-input">
-          <span class="input-label">Re-enter Password</span>
-          <input type="password" name="repassword" ng-model="user.repassword" required>
+        <div class="item-group">
+          <label class="item item-input"  ng-class="{ 'has-error': signUpForm.$submitted && signUpForm.confirmPwd.$invalid }">
+            <input type="password" name="confirmPwd" ng-model="signup.confirmPwd" ng-pattern="signup.password" placeholder="Re-enter Password" required>
           </label>
-          <div class="help-block" ng-messages="signUpForm.repassword.$error"
-               ng-show="signUpForm.$submitted">
-            <p ng-if="signUpForm.repassword.$error.required">Password is required.</p>
+          <div class="error" ng-messages="signUpForm.confirmPwd.$error"
+               ng-show="signUpForm.$submitted" >
+               <p ng-if="signUpForm.confirmPwd.$error.required">Password is required.</p>
+               <p ng-if="signUpForm.confirmPwd.$error.pattern">Passwords do not match.</p>
           </div>
         </div>
-
       </div>
+
       <div class="padding">
-        <button type="submit" class="button button-block button-positive" ng-click="signUpForm.$valid && SignUp()" >
+        <button type="submit" class="button button-block button-positive" ng-click="signUpForm.$valid && signup.SignUp()" >
           Sign Up
         </button>
       </div>
