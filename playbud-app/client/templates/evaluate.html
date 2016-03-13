@@ -5,14 +5,13 @@
     </div>
     <div ng-if="$root.currentUser">
 
-      <div ng-show="evaluate.showStart">
+      <div ng-show="evaluate.section === 'start'">
         <button class="button button-block button-positive" ng-click="evaluate.start()">Start</button>
       </div>
-
-      <div ng-show="evaluate.showQuestion">
+      <div ng-show="evaluate.section === 'question'">
         <div class="card">
           <div class="item item-text-wrap">
-            {{evaluate.evaluationSkills[evaluate.currentQuestionIndex].question}}
+            {{evaluate.currentQuestion.question}}
           </div>
         </div>
 
@@ -38,7 +37,7 @@
         </button>
       </div>
 
-      <div ng-show="evaluate.showResults">
+      <div ng-show="evaluate.section === 'results'">
         <div class="list card">
           <div
             ng-repeat="skill in evaluate.skillsWithAnswers"
