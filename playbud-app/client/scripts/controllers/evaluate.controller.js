@@ -3,9 +3,8 @@ angular
   .controller('EvaluateCtrl', EvaluateCtrl);
 
 function EvaluateCtrl($scope, $reactive) {
-  $reactive(this).attach($scope);
-
   var _instance = this;
+  $reactive(_instance).attach($scope);
 
   _instance.helpers({
     currentQuestion() {
