@@ -13,10 +13,12 @@ function EvaluateCtrl($scope, $reactive) {
     selectedAnswerOptionValue() {
       return _instance.selectedAnswerOptionValue;
     },
-    skillsWithAnswers() {
-      return _instance.skillsWithAnswers;
+    resultsSkills() {
+      return _instance.resultsSkills;
     }
   });
+
+  SkillAnswers = new Meteor.Collection("skillAnswers");
 
   _instance.start = start;
   _instance.submitAnswer = submitAnswer;
@@ -43,7 +45,7 @@ function EvaluateCtrl($scope, $reactive) {
 
   // Controller functions
   function start() {
-    _instance.subscribe('nextSkills', function() {
+    _instance.subscribe('skills', () => ['next', []], function() {
       angular.copy(Skills.find({}).fetch(), _instance.evaluationSkills);
       angular.copy(_instance.evaluationSkills, _instance.evaluationSkillsCopy);
       nextQuestion();
@@ -61,7 +63,8 @@ function EvaluateCtrl($scope, $reactive) {
         } else {
           nextQuestion();
         }
-      });
+      }
+    );
   }
 
   function done() {
@@ -81,12 +84,9 @@ function EvaluateCtrl($scope, $reactive) {
   }
 
   function results() {
-    Meteor.call('skillsWithAnswers', _instance.evaluationSkillsCopy, function(error, skillsWithAnswers) {
-      if (error) {
-        throw new Meteor.Error('method-call-skillsWithAnswers', 'Error getting skills with answers');
-      } else {
-        _instance.skillsWithAnswers = skillsWithAnswers;
-      }
+    _instance.subscribe('skills', () => ['specific', _instance.evaluationSkillsCopy], function() {
+      _instance.resultsSkills = Skills.find({}).fetch();
+      console.log(SkillAnswers.find().fetch());
     });
     _instance.section = 'results';
   }
