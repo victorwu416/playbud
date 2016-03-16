@@ -40,9 +40,8 @@ function EvaluateCtrl($reactive, $scope, SkillsTransform) {
     text: 'Did not try'
   }];
 
-
   _instance.start = function() {
-    _instance.skillsSubscriptionHandle = _instance.subscribe('skills', function() {      
+    _instance.skillsSubscriptionHandle = _instance.subscribe('skills', function() {
       angular.copy(SkillsTransform.appropriateSkills(Skills, SkillAnswers), _instance.evaluationSkills);
       angular.copy(_instance.evaluationSkills, _instance.evaluationSkillsCopy);
       nextQuestion();
