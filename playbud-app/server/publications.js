@@ -7,13 +7,26 @@ Meteor.publish('parent', function() {
   });
 });
 
-Meteor.publishComposite('skills', function () {
+Meteor.publishComposite('skills', function (which, specificSkills) {
   if (!this.userId) {
     throw new Meteor.Error('not-logged-in', 'Must be logged in to publish skills');
   }
+  check(which, String);
+  check(specificSkills, Array);
   return {
     find: function() {
-      return Skills.find({}, {limit: 3}); // TODO: Logic to return skills only within the age range.
+      var selector = {};
+      if (which === 'next') {
+        selector = {};
+      } else if (which === 'specific') {
+        var skillIds = _.map(specificSkills, function (skill) {
+          return skill._id;
+        });
+        selector = {_id: {$in: skillIds}};
+      } else {
+        throw new Meteor.Error('invalid-which-argument', 'Invalid which argument, where which is: ' + which);
+      }
+      return Skills.find(selector, {limit: 3}); // TODO: Logic to return skills only within the age range.
     },
     children: [
       {

@@ -25,6 +25,7 @@ function EvaluateCtrl($reactive, $scope, SkillsTransform) {
   _instance.currentQuestion = null;
   _instance.evaluationSkills = [];
   _instance.evaluationSkillsCopy = [];
+  _instance.resultsSkills = [];
 
   _instance.answerOptions = [{
     value: 'easily',
@@ -41,7 +42,10 @@ function EvaluateCtrl($reactive, $scope, SkillsTransform) {
   }];
 
   _instance.start = function() {
-    _instance.skillsSubscriptionHandle = _instance.subscribe('skills', function() {
+    if (_instance.skillsSubscriptionHandle) {
+      _instance.skillsSubscriptionHandle.stop();
+    }
+    _instance.skillsSubscriptionHandle = _instance.subscribe('skills', () => ['next', []], function () {
       angular.copy(SkillsTransform.appropriateSkills(Skills, SkillAnswers), _instance.evaluationSkills);
       angular.copy(_instance.evaluationSkills, _instance.evaluationSkillsCopy);
       nextQuestion();
@@ -49,7 +53,6 @@ function EvaluateCtrl($reactive, $scope, SkillsTransform) {
   }
 
   _instance.submitAnswer = function() {
-    _instance.skillsSubscriptionHandle.stop();
     Meteor.call(
       'submitAnswer',
       _instance.currentQuestion,
@@ -76,7 +79,10 @@ function EvaluateCtrl($reactive, $scope, SkillsTransform) {
   }
 
   function results() {
-    _instance.resultsSkills = _instance.evaluationSkillsCopy;
-    _instance.section = 'results';
+    _instance.skillsSubscriptionHandle.stop();
+    _instance.skillsSubscriptionHandle = _instance.subscribe('skills', () => ['specific', _instance.evaluationSkillsCopy], function () {
+      _instance.resultsSkills = Skills.find({}).fetch()
+      _instance.section = 'results';
+    });
   }
 }

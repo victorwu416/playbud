@@ -43,6 +43,10 @@
             ng-repeat="skill in evaluate.resultsSkills"
             class="item">
             {{skill.shortDescription}}
+            <div
+              ng-repeat="answer in skill">
+              {{answer.value}}
+            </div>
           </div>
         </div>
 
