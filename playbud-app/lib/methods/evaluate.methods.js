@@ -7,5 +7,5 @@ Meteor.methods({
       throw new Meteor.Error('not-logged-in', 'Must be logged in to submit answer value');
     }
     return Answers.insert({skillId: skill._id.valueOf(), userId: this.userId, value: value});
-  },
+  }
 });

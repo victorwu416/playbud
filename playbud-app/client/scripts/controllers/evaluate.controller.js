@@ -2,11 +2,14 @@ angular
   .module('Playbud')
   .controller('EvaluateCtrl', EvaluateCtrl);
 
-function EvaluateCtrl($scope, $reactive) {
+function EvaluateCtrl($reactive, $scope, SkillsTransform) {
   var _instance = this;
   $reactive(_instance).attach($scope);
 
   _instance.helpers({
+    section() {
+      return _instance.section;
+    },
     currentQuestion() {
       return _instance.currentQuestion;
     },
@@ -18,16 +21,10 @@ function EvaluateCtrl($scope, $reactive) {
     }
   });
 
-  SkillAnswers = new Meteor.Collection("skillAnswers");
-
-  _instance.start = start;
-  _instance.submitAnswer = submitAnswer;
-  _instance.done = done;
-
+  _instance.section = 'start';
+  _instance.currentQuestion = null;
   _instance.evaluationSkills = [];
   _instance.evaluationSkillsCopy = [];
-  _instance.currentQuestion = null;
-  _instance.section = 'start';
 
   _instance.answerOptions = [{
     value: 'easily',
@@ -43,16 +40,17 @@ function EvaluateCtrl($scope, $reactive) {
     text: 'Did not try'
   }];
 
-  // Controller functions
-  function start() {
-    _instance.subscribe('skills', () => ['next', []], function() {
-      angular.copy(Skills.find({}).fetch(), _instance.evaluationSkills);
+
+  _instance.start = function() {
+    _instance.skillsSubscriptionHandle = _instance.subscribe('skills', function() {      
+      angular.copy(SkillsTransform.appropriateSkills(Skills, SkillAnswers), _instance.evaluationSkills);
       angular.copy(_instance.evaluationSkills, _instance.evaluationSkillsCopy);
       nextQuestion();
     });
   }
 
-  function submitAnswer() {
+  _instance.submitAnswer = function() {
+    _instance.skillsSubscriptionHandle.stop();
     Meteor.call(
       'submitAnswer',
       _instance.currentQuestion,
@@ -67,11 +65,6 @@ function EvaluateCtrl($scope, $reactive) {
     );
   }
 
-  function done() {
-    _instance.section = 'start';
-  }
-
-  // Private functions
   function nextQuestion() {
     _instance.nextButtonDisabled = true;
     _instance.currentQuestion = _instance.evaluationSkills.shift();
@@ -84,10 +77,7 @@ function EvaluateCtrl($scope, $reactive) {
   }
 
   function results() {
-    _instance.subscribe('skills', () => ['specific', _instance.evaluationSkillsCopy], function() {
-      _instance.resultsSkills = Skills.find({}).fetch();
-      console.log(SkillAnswers.find().fetch());
-    });
+    _instance.resultsSkills = _instance.evaluationSkillsCopy;
     _instance.section = 'results';
   }
 }
