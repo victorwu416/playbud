@@ -20,17 +20,12 @@ Meteor.publishComposite('skills', function (which, specificSkills) {
         selector = {};
       } else if (which === 'specific') {
         var skillIds = _.map(specificSkills, function (skill) {
-          // return skill._id;
-          return new Meteor.Collection.ObjectID(skill._id.valueOf());
+          return skill._id;
         });
         selector = {_id: {$in: skillIds}};
-        console.log(skillIds);
       } else {
         throw new Meteor.Error('invalid-which-argument', 'Invalid which argument, where which is: ' + which);
       }
-      console.log('which is ' + which);
-      console.log(selector);
-      console.log(Skills.find(selector, {limit: 3}).fetch());
       return Skills.find(selector, {limit: 3}); // TODO: Logic to return skills only within the age range.
     },
     children: [

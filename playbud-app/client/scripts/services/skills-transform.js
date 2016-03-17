@@ -6,10 +6,9 @@ function SkillsTransform() {
   var _instance = this;
 
   _instance.appropriateSkills = function (skillsCollection, skillAnswersCollection) {
-    var appropriateSkills = _.filter(skillsCollection.find({}).fetch(), function (skill) {
-      // Do not return skills that already have 2 or more 'easily' answers
+    var appropriateSkills = _.filter(skillsCollection.find({}).fetch(), function (skill) {      
       return skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'easily'}).count() < 2;
-    });    
+    });
     return appropriateSkills;
   };
 
