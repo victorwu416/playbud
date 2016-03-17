@@ -3,12 +3,15 @@ angular
   .controller('PlayIdeaCtrl', PlayIdeaCtrl);
 
 function PlayIdeaCtrl ($reactive, $scope, $stateParams) {
-  $reactive(this).attach($scope);
+  var _instance = this;
+  $reactive(_instance).attach($scope);
 
-  this.subscribe('nextSkills');
-  this.helpers({
+  _instance.helpers({
     skill() {
       return Skills.findOne(new Meteor.Collection.ObjectID($stateParams.skillId));
     }
   });
+
+  _instance.subscribe('skills', () => ['next', []]);
+
 }

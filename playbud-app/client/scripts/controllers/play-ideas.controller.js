@@ -14,7 +14,7 @@ function PlayIdeasCtrl($reactive, $scope, SkillsTransform) {
 
   _instance.skills = [];
 
-  _instance.subscribe('skills', function() {
+  _instance.subscribe('skills', () => ['next', []], function() {
     angular.copy(SkillsTransform.appropriateSkills(Skills, SkillAnswers), _instance.skills);
   });
 }
