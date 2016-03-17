@@ -1,4 +1,4 @@
-Meteor.publish('parent', function() {
+Meteor.publish('parent', function () {
   if (!this.userId) {
     throw new Meteor.Error('not-logged-in', 'Must be logged in to publish parent');
   }
