@@ -40,13 +40,9 @@
       <div ng-show="evaluate.section === 'results'">
         <div class="list card">
           <div
-            ng-repeat="skill in evaluate.skillsWithAnswers"
+            ng-repeat="skill in evaluate.resultsSkills"
             class="item">
-            {{skill.shortDescription}}
-            <div
-              ng-repeat="answer in skill.answers">
-              {{answer.value}}
-            </div>
+            {{skill.shortDescription}} | {{skill.state}}
           </div>
         </div>
 

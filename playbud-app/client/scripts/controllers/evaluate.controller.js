@@ -2,31 +2,30 @@ angular
   .module('Playbud')
   .controller('EvaluateCtrl', EvaluateCtrl);
 
-function EvaluateCtrl($scope, $reactive) {
-  $reactive(this).attach($scope);
-
+function EvaluateCtrl($reactive, $scope, SkillsTransform) {
   var _instance = this;
+  $reactive(_instance).attach($scope);
 
   _instance.helpers({
+    section() {
+      return _instance.section;
+    },
     currentQuestion() {
       return _instance.currentQuestion;
     },
     selectedAnswerOptionValue() {
       return _instance.selectedAnswerOptionValue;
     },
-    skillsWithAnswers() {
-      return _instance.skillsWithAnswers;
+    resultsSkills() {
+      return _instance.resultsSkills;
     }
   });
 
-  _instance.start = start;
-  _instance.submitAnswer = submitAnswer;
-  _instance.done = done;
-
+  _instance.section = 'start';
+  _instance.currentQuestion = null;
   _instance.evaluationSkills = [];
   _instance.evaluationSkillsCopy = [];
-  _instance.currentQuestion = null;
-  _instance.section = 'start';
+  _instance.resultsSkills = [];
 
   _instance.answerOptions = [{
     value: 'easily',
@@ -42,16 +41,15 @@ function EvaluateCtrl($scope, $reactive) {
     text: 'Did not try'
   }];
 
-  // Controller functions
-  function start() {
-    _instance.subscribe('nextSkills', function() {
-      angular.copy(Skills.find({}).fetch(), _instance.evaluationSkills);
+  _instance.start = function() {
+    _instance.skillsSubscriptionHandle = _instance.subscribe('skills', () => ['next', []], function () {
+      angular.copy(SkillsTransform.appropriateSkills(Skills, SkillAnswers), _instance.evaluationSkills);
       angular.copy(_instance.evaluationSkills, _instance.evaluationSkillsCopy);
       nextQuestion();
     });
-  }
+  };
 
-  function submitAnswer() {
+  _instance.submitAnswer = function() {
     Meteor.call(
       'submitAnswer',
       _instance.currentQuestion,
@@ -62,15 +60,17 @@ function EvaluateCtrl($scope, $reactive) {
         } else {
           nextQuestion();
         }
-      });
-  }
+      }
+    );
+  };
 
-  function done() {
+  _instance.done = function() {
+    _instance.skillsSubscriptionHandle.stop();
     _instance.section = 'start';
-  }
+  };
 
-  // Private functions
   function nextQuestion() {
+    _instance.skillsSubscriptionHandle.stop();
     _instance.nextButtonDisabled = true;
     _instance.currentQuestion = _instance.evaluationSkills.shift();
     if (_instance.currentQuestion) {
@@ -82,13 +82,9 @@ function EvaluateCtrl($scope, $reactive) {
   }
 
   function results() {
-    Meteor.call('skillsWithAnswers', _instance.evaluationSkillsCopy, function(error, skillsWithAnswers) {
-      if (error) {
-        throw new Meteor.Error('method-call-skillsWithAnswers', 'Error getting skills with answers');
-      } else {
-        _instance.skillsWithAnswers = skillsWithAnswers;
-      }
+    _instance.skillsSubscriptionHandle = _instance.subscribe('skills', () => ['specific', _instance.evaluationSkillsCopy], function () {
+      _instance.resultsSkills = SkillsTransform.skillsWithStates(Skills, SkillAnswers);
+      _instance.section = 'results';
     });
-    _instance.section = 'results';
   }
 }
