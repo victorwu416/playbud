@@ -9,6 +9,15 @@ function config($stateProvider, $urlRouterProvider) {
       abstract: true,
       templateUrl: 'client/templates/tabs.html',
     })
+    .state('tab.play', {
+      url: '/play',
+      views: {
+        'tab-play': {
+          templateUrl: 'client/templates/play.html',
+          controller: 'PlayCtrl as play'
+        }
+      }
+    })
     .state('tab.progress', {
       url: '/progress',
       views: {
@@ -60,5 +69,5 @@ function config($stateProvider, $urlRouterProvider) {
           controller: 'SignupCtrl as signup'
     });
 
-  $urlRouterProvider.otherwise('tab/progress');
+  $urlRouterProvider.otherwise('tab/play');
 }
