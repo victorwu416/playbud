@@ -26,6 +26,11 @@
   {
     margin-bottom: 0;
   }
+
+  .item-label
+  {
+    color: #444;
+  }
 }
 
 .userProfileForm {
@@ -37,5 +42,13 @@
   .padding
   {
     padding-top: 20px;
+  }
+}
+
+.signUpForm
+{
+  .password
+  {
+    height: 120px;
   }
 }
