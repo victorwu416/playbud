@@ -2,11 +2,21 @@
   <ion-content class="play">
     <div class="list card">
       <a
-        ng-repeat="skill in play.skills"
-        href="#/tab/play-ideas/{{skill._id.valueOf()}}"
+        ng-repeat="skill in play.nextSkills"
+        href="#/tab/skills/{{skill._id.valueOf()}}"
         class="item"
         >
-        {{skill.shortDescription}} | {{skill.months}} months
+        {{skill.shortDescription}} | {{skill.months}} months | {{skill.state}}
+      </a>
+    </div>
+
+    <div class="list card">
+      <a
+        ng-repeat="skill in play.previousSkills"
+        href="#/tab/skills/{{skill._id.valueOf()}}"
+        class="item"
+        >
+        {{skill.shortDescription}} | {{skill.months}} months | {{skill.state}}
       </a>
     </div>
     <ion-infinite-scroll

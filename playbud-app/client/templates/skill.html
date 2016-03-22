@@ -1,0 +1,29 @@
+<ion-view title="Skill">
+  <ion-content>
+    Skill
+    <br/>
+    {{skill.skill.shortDescription}} <br/>
+    {{skill.skill.longDescription}} <br/>
+    <div
+      ng-repeat="answer in skill.skill.answers">
+      {{answer.value}}
+    </div>
+
+    <ion-radio
+      ng-repeat="answerOption in skill.answerOptions"
+      ng-value="answerOption.value"
+      ng-model="skill.selectedAnswerOptionValue"
+      >
+      {{answerOption.text}}
+    </ion-radio>
+
+    <button
+      class="button button-block button-positive"      
+      ng-click="skill.submitAnswer()">
+      Next
+    </button>
+
+
+  </ion-content>
+
+</ion-view>

@@ -18,6 +18,15 @@ function config($stateProvider, $urlRouterProvider) {
         }
       }
     })
+    .state('tab.skill', {
+      url: '/skills/:skillId',
+      views: {
+        'tab-play': {
+          templateUrl: 'client/templates/skill.html',
+          controller: 'SkillCtrl as skill'
+        }
+      }
+    })
     .state('tab.progress', {
       url: '/progress',
       views: {
