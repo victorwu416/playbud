@@ -20,8 +20,13 @@ function config($stateProvider, $urlRouterProvider) {
       abstract: true,
       templateUrl: 'client/templates/tabs.html',
       resolve: {
-        'currentUser': function ($meteor) {
-          return $meteor.requireUser();
+        currentUser: ($q) => {
+          if (Meteor.userId() == null) {
+            return $q.reject();
+          }
+          else {
+            return $q.resolve();
+          }
         }
       }
     })
@@ -85,8 +90,13 @@ function config($stateProvider, $urlRouterProvider) {
           templateUrl: 'client/templates/user-profile.html',
           controller: 'UserProfileCtrl as profile',
           resolve: {
-            'currentUser': function ($meteor) {
-              return $meteor.requireUser();
+            currentUser: ($q) => {
+              if (Meteor.userId() == null) {
+                return $q.reject();
+              }
+              else {
+                return $q.resolve();
+              }
             }
           }
     });
