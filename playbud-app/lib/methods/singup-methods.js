@@ -1,14 +1,16 @@
 Meteor.methods({
   createUserAccount(email, password) {
-    if (!this.userId) {
+    if (!Meteor.userId()) {
       Accounts.createUser({
             email: email,
             password: password,
             profile: {
-              childFirstName: null,
-              childLastName: null,
-              childAge: null,
-              childGender: null
+                child: {
+                  firstName: null,
+                  lastName: null,
+                  age: null,
+                  gender: null
+                }
             }
         });
     }
@@ -16,5 +18,5 @@ Meteor.methods({
   isEmailFound(email) {
     var user = Meteor.users.findOne({"emails.address": email});
     return user !== undefined;
-  },
+  }
 });
