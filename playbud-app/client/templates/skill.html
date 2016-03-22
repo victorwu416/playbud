@@ -4,11 +4,14 @@
     <br/>
     {{skill.skill.shortDescription}} <br/>
     {{skill.skill.longDescription}} <br/>
-    <div
+    {{skill.skill.state}} <br/>
+    <!-- <div
       ng-repeat="answer in skill.skill.answers">
       {{answer.value}}
-    </div>
+    </div> -->
 
+<div
+  ng-if="skill.skill.state !== 'passed'">
     <ion-radio
       ng-repeat="answerOption in skill.answerOptions"
       ng-value="answerOption.value"
@@ -18,11 +21,11 @@
     </ion-radio>
 
     <button
-      class="button button-block button-positive"      
+      class="button button-block button-positive"
       ng-click="skill.submitAnswer()">
       Next
     </button>
-
+</div>
 
   </ion-content>
 

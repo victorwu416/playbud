@@ -8,7 +8,8 @@ function SkillCtrl ($reactive, $scope, $stateParams, SkillsTransform) {
 
   _instance.helpers({
     skill() {
-      return SkillsTransform.skillWithAnswers(Skills, $stateParams.skillId, SkillAnswers);
+      // return SkillsTransform.skillWithAnswers(Skills, $stateParams.skillId, SkillAnswers);
+      return SkillsTransform.skillWithState(Skills, $stateParams.skillId, SkillAnswers);
     },
     selectedAnswerOptionValue() {
       return _instance.selectedAnswerOptionValue;
