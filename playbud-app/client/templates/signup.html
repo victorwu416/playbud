@@ -18,11 +18,12 @@
 
         <div class="item-group">
           <label class="item item-input" ng-class="{ 'has-error': signUpForm.$submitted && signUpForm.password.$invalid }">
-            <input type="password" name="password" ng-model="signup.password" placeholder="Password" required>
+            <input type="password" name="password" ng-model="signup.password" placeholder="Password" required password-strength>
           </label>
           <div class="error" ng-messages="signUpForm.password.$error"
                ng-show="signUpForm.$submitted">
             <p ng-if="signUpForm.password.$error.required">Password is required.</p>
+            <p ng-show="signUpForm.password.$error.passwordStrength">Min. length is 8.</p>
           </div>
         </div>
 
