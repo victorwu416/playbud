@@ -27,42 +27,6 @@ function config($stateProvider, $urlRouterProvider) {
         }
       }
     })
-    .state('tab.progress', {
-      url: '/progress',
-      views: {
-        'tab-progress': {
-          templateUrl: 'client/templates/progress.html',
-          controller: 'ProgressCtrl as progress'
-        }
-      }
-    })
-    .state('tab.play-ideas', {
-      url: '/play-ideas',
-      views: {
-        'tab-play-ideas': {
-          templateUrl: 'client/templates/play-ideas.html',
-          controller: 'PlayIdeasCtrl as playIdeas'
-        }
-      }
-    })
-    .state('tab.play-idea', {
-      url: '/play-ideas/:skillId',
-      views: {
-        'tab-play-ideas': {
-          templateUrl: 'client/templates/play-idea.html',
-          controller: 'PlayIdeaCtrl as playIdea'
-        }
-      }
-    })
-    .state('tab.evaluate', {
-      url: '/evaluate',
-      views: {
-        'tab-evaluate': {
-          templateUrl: 'client/templates/evaluate.html',
-          controller: 'EvaluateCtrl as evaluate'
-        }
-      }
-    })
     .state('tab.playbud-account', {
       url: '/playbud-account',
       views: {

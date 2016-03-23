@@ -11,7 +11,7 @@
     </div> -->
 
 <div
-  ng-if="skill.skill.state !== 'passed'">
+  ng-if="(skill.skill.state !== 'passed') && (skill.skill.state !== 'skipped')">
     <ion-radio
       ng-repeat="answerOption in skill.answerOptions"
       ng-value="answerOption.value"
@@ -23,9 +23,16 @@
     <button
       class="button button-block button-positive"
       ng-click="skill.submitAnswer()">
-      Next
+      Submit
+    </button>
+
+    <button
+      class="button button-block button-positive"
+      ng-click="skill.skipSkill()">
+      Skip
     </button>
 </div>
+
 
   </ion-content>
 

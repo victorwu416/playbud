@@ -8,7 +8,6 @@ function SkillCtrl ($reactive, $scope, $stateParams, SkillsTransform) {
 
   _instance.helpers({
     skill() {
-      // return SkillsTransform.skillWithAnswers(Skills, $stateParams.skillId, SkillAnswers);
       return SkillsTransform.skillWithState(Skills, $stateParams.skillId, SkillAnswers);
     },
     selectedAnswerOptionValue() {
@@ -35,6 +34,19 @@ function SkillCtrl ($reactive, $scope, $stateParams, SkillsTransform) {
       'submitAnswer',
       _instance.skill,
       _instance.selectedAnswerOptionValue,
+      function(error, result) {
+        if (error) {
+          throw new Meteor.Error('method-call-submitAnswer', 'Error submitting answer');
+        }
+      }
+    );
+  };
+
+  _instance.skipSkill = function() {
+    Meteor.call(
+      'submitAnswer',
+      _instance.skill,
+      'skip',
       function(error, result) {
         if (error) {
           throw new Meteor.Error('method-call-submitAnswer', 'Error submitting answer');

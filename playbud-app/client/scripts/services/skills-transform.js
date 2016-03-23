@@ -37,7 +37,10 @@ function SkillsTransform() {
       sort: {months: 1, shortDescription: 1},
     };
     var nextSkills = _.filter(skillsCollection.find({}, options).fetch(), function (skill) {
-      if (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'easily'}).count() < 2) {
+      if (
+        (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'easily'}).count() < 2) &&
+        (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'skip'}).count() < 1)
+      ) {
         return _skillWithState(skill, skillAnswersCollection);
       }
     });
@@ -55,15 +58,12 @@ function SkillsTransform() {
       if (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'easily'}).count() >= 2) {
         return _skillWithState(skill, skillAnswersCollection);
       }
+      if (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'skip'}).count() >= 1) {
+        return _skillWithState(skill, skillAnswersCollection);
+      }
     });
     return previousSkills;
   }
-
-  // _instance.skillWithAnswers = function (skillsCollection, skillId, skillAnswersCollection) {
-  //   var skill = skillsCollection.findOne(new Meteor.Collection.ObjectID(skillId));
-  //   skill.answers = skillAnswersCollection.find({skillId: skillId}).fetch();
-  //   return skill;
-  // }
 
   _instance.skillWithState = function (skillsCollection, skillId, skillAnswersCollection) {
     return _skillWithState(skillsCollection.findOne(new Meteor.Collection.ObjectID(skillId)), skillAnswersCollection);
@@ -72,6 +72,8 @@ function SkillsTransform() {
   function _skillWithState (skill, skillAnswersCollection) {
     if (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'easily'}).count() >= 2) {
       skill.state = 'passed';
+    } else if (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'skip'}).count() >= 1) {
+      skill.state = 'skipped';
     } else if (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'easily'}).count() === 1) {
       skill.state = 'getting-there';
     } else if (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'with-difficulty'}).count() >= 1) {
