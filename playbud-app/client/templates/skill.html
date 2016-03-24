@@ -1,9 +1,14 @@
 <ion-view title="Skill">
   <ion-content>
-    Skill
-    <br/>
-    {{skill.skill.shortDescription}} <br/>
-    {{skill.skill.longDescription}} <br/>
+    <div class="card">
+      <div class="item item-body">
+        <img class="full-image" src="http://localhost:3000/image1.png">
+        <h2>{{skill.skill.shortDescription}}</h2>
+        <p>{{skill.skill.longDescription}}</p>
+        <p><skill-state state="skill.skill.state"></skill-state></p>
+      </div>
+    </div>
+
     {{skill.skill.state}} <br/>
     <!-- <div
       ng-repeat="answer in skill.skill.answers">

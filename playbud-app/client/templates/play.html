@@ -1,22 +1,29 @@
 <ion-view view-title="Play">
   <ion-content class="play">
-    <div class="list card">
+    <div class="list">
+      <div class="item item-divider">NEXT</div>
       <a
         ng-repeat="skill in play.nextSkills"
         href="#/tab/skills/{{skill._id.valueOf()}}"
-        class="item"
+        class="item item-thumbnail-left"
         >
-        {{skill.shortDescription}} | {{skill.months}} months | {{skill.state}}
+        <img src="http://localhost:3000/image1.png">
+        <h2>{{skill.shortDescription}}</h2>
+        <!-- <p>{{skill.months}} months</p> -->
+        <p><skill-state state="skill.state"></skill-state></p>
+        <p>Last evaluated Mar 24, 2016</p>
       </a>
-    </div>
 
-    <div class="list card">
+      <div class="item item-divider">DONE</div>
       <a
         ng-repeat="skill in play.previousSkills"
         href="#/tab/skills/{{skill._id.valueOf()}}"
-        class="item"
+        class="item item-thumbnail-left"
         >
-        {{skill.shortDescription}} | {{skill.months}} months | {{skill.state}}
+        <img src="http://localhost:3000/image1.png">
+        <h2>{{skill.shortDescription}}</h2>
+        <!-- <span>{{skill.months}} months</span> -->
+        <p><skill-state state="skill.state"></skill-state> Mar 24, 2016</p>
       </a>
     </div>
     <ion-infinite-scroll

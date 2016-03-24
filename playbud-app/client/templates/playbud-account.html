@@ -1,0 +1,18 @@
+<ion-view view-title="Account">
+  <ion-content>
+    <login-buttons></login-buttons>
+
+    <div ng-if="!$root.currentUser">
+      Sign in to update account
+    </div>
+    <div ng-if="$root.currentUser">
+      <input ng-model="playbudAccount.parent.childFirstName" type="text" placeholder="Child's first name">
+      <input ng-model="playbudAccount.parent.childDateOfBirth" type="date">
+
+      <button class="button button-block button-positive" ng-click="playbudAccount.updateParent()">Update</button>
+
+    </div>
+
+
+  </ion-content>
+</ion-view>
