@@ -36,6 +36,16 @@
             <p ng-if="profileForm.childAge.$error.required">Child's Age is required.</p>
           </div>
         </div>
+
+        <div class="item-group item-gender">
+          <span class="input-label">Child's Gender</span>
+            <ion-radio name="childGender" ng-model="profile.childGender" ng-value="'boy'" required>Boy</ion-radio>
+            <ion-radio name="childGender" ng-model="profile.childGender" ng-value="'girl'" required>Girl</ion-radio>
+          <div class="error" ng-messages="profileForm.childGender.$error"
+               ng-show="profileForm.$submitted">
+            <p ng-if="profileForm.childGender.$error.required">Child's Gender is required.</p>
+          </div>
+        </div>
       </div>
 
       <div class="padding">
