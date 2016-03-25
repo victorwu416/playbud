@@ -23,13 +23,14 @@
                ng-show="loginForm.$submitted">
             <p ng-if="loginForm.password.$error.required">Password is required.</p>
           </div>
+          <label class="error">{{loginFailedMsg}}</label>
         </div>
-        <label class="error">{{loginFailedMsg}}</label>
       </div>
       <div class="padding">
         <button type="submit" class="button button-block button-positive" ng-click="loginForm.$valid && login.Login()" >
           Login
         </button>
+        Don't have an account yet? <a href="#/signup">Sign up</a>
       </div>
     </ion-content>
 

@@ -66,12 +66,12 @@ function config($stateProvider, $urlRouterProvider) {
         }
       }
     })
-    .state('tab.playbud-account', {
-      url: '/playbud-account',
+    .state('tab.account', {
+      url: '/account',
       views: {
-        'tab-playbud-account': {
-          templateUrl: 'client/templates/playbud-account.html',
-          controller: 'PlaybudAccountCtrl as playbudAccount'
+        'tab-account': {
+          templateUrl: 'client/templates/account.html',
+          controller: 'AccountCtrl as account'
         }
       }
     })
@@ -84,21 +84,6 @@ function config($stateProvider, $urlRouterProvider) {
       url: '/login',
           templateUrl: 'client/templates/login.html',
           controller: 'LoginCtrl as login'
-    })
-    .state('user-profile', {
-      url: '/user-profile',
-          templateUrl: 'client/templates/user-profile.html',
-          controller: 'UserProfileCtrl as profile',
-          resolve: {
-            currentUser: ($q) => {
-              if (Meteor.userId() == null) {
-                return $q.reject();
-              }
-              else {
-                return $q.resolve();
-              }
-            }
-          }
     });
 
   $urlRouterProvider.otherwise('login');

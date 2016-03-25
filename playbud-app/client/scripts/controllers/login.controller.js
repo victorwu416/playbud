@@ -7,7 +7,6 @@ function LoginCtrl ($scope, $reactive, $state) {
 
   this.Login = Login;
   $scope.loginFailedMsg = "";
-  Meteor.logout();  // Todo: remove this line
 
   function Login() {
     Meteor.loginWithPassword(this.email, this.password, function(error) {
@@ -23,7 +22,7 @@ function LoginCtrl ($scope, $reactive, $state) {
             $state.go("tab.progress");
           }
           else {
-            $state.go("user-profile");
+            $state.go("tab.account");
           }
         });
 
