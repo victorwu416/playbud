@@ -7,6 +7,9 @@ function SkillCtrl ($reactive, $scope, $stateParams, SkillsTransform) {
   $reactive(_instance).attach($scope);
 
   _instance.helpers({
+    section() {
+      return _instance.section;
+    },
     skill() {
       return SkillsTransform.skillWithState(Skills, $stateParams.skillId, SkillAnswers);
     },
@@ -24,12 +27,12 @@ function SkillCtrl ($reactive, $scope, $stateParams, SkillsTransform) {
   }, {
     value: 'unable',
     text: 'Unable'
-  }, {
-    value: 'did-not-try',
-    text: 'Did not try'
   }];
 
-  _instance.submitAnswer = function() {
+  _instance.section = 'skill';
+  _instance.selectedAnswerOptionValue = '';
+
+  _instance.submitAnswer = function () {
     Meteor.call(
       'submitAnswer',
       _instance.skill,
@@ -40,9 +43,10 @@ function SkillCtrl ($reactive, $scope, $stateParams, SkillsTransform) {
         }
       }
     );
+    _instance.section = 'evaluate-finish';
   };
 
-  _instance.skipSkill = function() {
+  _instance.skipSkill = function () {
     Meteor.call(
       'submitAnswer',
       _instance.skill,
@@ -53,6 +57,7 @@ function SkillCtrl ($reactive, $scope, $stateParams, SkillsTransform) {
         }
       }
     );
+    _instance.section = 'skip-finish';
   };
 
 }

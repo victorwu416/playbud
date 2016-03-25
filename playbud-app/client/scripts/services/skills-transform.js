@@ -80,8 +80,6 @@ function SkillsTransform() {
       skill.state = 'getting-there';
     } else if (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'unable'}).count() >= 1) {
       skill.state = 'tried';
-    } else if (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'did-not-try'}).count() >= 1) {
-      skill.state = 'not-started';
     } else {
       skill.state = 'not-started';
     }
