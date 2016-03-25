@@ -11,9 +11,9 @@ function PlayCtrl($reactive, $scope, SkillsTransform) {
       updateSkills();
       return _instance.nextSkills;
     },
-    previousSkills() {
+    doneSkills() {
       updateSkills();
-      return _instance.previousSkills;
+      return _instance.doneSkills;
     },
     moreSkillsAvailable() {
       return _instance.moreSkillsAvailable;
@@ -21,7 +21,7 @@ function PlayCtrl($reactive, $scope, SkillsTransform) {
   });
 
   _instance.nextSkills = [];
-  _instance.previousSkills = [];
+  _instance.doneSkills = [];
 
   _instance.moreSkillsAvailable = true;
   _instance.lastSkillId = '';
@@ -40,12 +40,12 @@ function PlayCtrl($reactive, $scope, SkillsTransform) {
 
   function updateSkills() {
     _instance.nextSkills = SkillsTransform.nextSkills(Skills, SkillAnswers);
-    _instance.previousSkills = SkillsTransform.previousSkills(Skills, SkillAnswers);
+    _instance.doneSkills = SkillsTransform.doneSkills(Skills, SkillAnswers);
   }
 
   function updateMoreSkillsAvailable() {
-    if (_instance.previousSkills.length > 0) {
-      var lastSkillId = _instance.previousSkills[_instance.previousSkills.length-1]._id.valueOf();
+    if (_instance.doneSkills.length > 0) {
+      var lastSkillId = _instance.doneSkills[_instance.doneSkills.length-1]._id.valueOf();
       if (_instance.lastSkillId === lastSkillId) {
         _instance.moreSkillsAvailable = false;
       } else {
