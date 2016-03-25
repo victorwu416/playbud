@@ -5,10 +5,14 @@ Meteor.methods({
             email: email,
             password: password,
             profile: {
+                user: {
+                  firstName:null,
+                  lastName:null
+                },
                 child: {
                   firstName: null,
                   lastName: null,
-                  age: null,
+                  birthday: null,
                   gender: null
                 }
             }

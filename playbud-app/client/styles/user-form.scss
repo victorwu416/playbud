@@ -1,4 +1,4 @@
-.signUpForm, .loginForm, .userProfileForm {
+.signUpForm, .loginForm, .accountForm {
   .has-error {
     border-bottom: 3px solid #B83E2C;
   }
@@ -33,7 +33,7 @@
   }
 }
 
-.userProfileForm {
+.accountForm {
   .item-group
   {
       height: 105px;

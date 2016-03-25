@@ -13,7 +13,7 @@ function SignupCtrl ($scope, $reactive, $state) {
 
     // login and redirect to user profile
     Meteor.loginWithPassword(this.email, this.password, function(error) {
-      $state.go("user-profile");
+      $state.go("tab.account");
     });
 
   };
