@@ -3,14 +3,14 @@ angular
   .config(config)
   .run(run);
 
-  function run($rootScope, $state) {
+function run($rootScope, $state) {
 
-      $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
-        if( error  === 'not authorized' ){
-            return $state.go( 'login' );
-        }
-      });
-  }
+    $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
+      if( error  === 'not authorized' ){
+          return $state.go( 'login' );
+      }
+    });
+}
 
 function config($stateProvider, $urlRouterProvider) {
 
