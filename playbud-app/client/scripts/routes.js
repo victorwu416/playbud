@@ -3,14 +3,15 @@ angular
   .config(config)
   .run(run);
 
-function run($rootScope, $state) {
 
-    $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
-      if( error  === 'not authorized' ){
-          return $state.go( 'login' );
-      }
-    });
-}
+  function run($rootScope, $state) {
+
+      $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
+        if( error  === 'not authorized' ){
+            return $state.go( 'login' );
+        }
+      });
+  }
 
 function config($stateProvider, $urlRouterProvider) {
 
@@ -48,15 +49,6 @@ function config($stateProvider, $urlRouterProvider) {
         }
       }
     })
-    .state('tab.account', {
-      url: '/account',
-      views: {
-        'tab-account': {
-          templateUrl: 'client/templates/account.html',
-          controller: 'AccountCtrl as account'
-        }
-      }
-    })
     .state('signup', {
       url: '/signup',
           templateUrl: 'client/templates/signup.html',
@@ -68,7 +60,5 @@ function config($stateProvider, $urlRouterProvider) {
           controller: 'LoginCtrl as login'
     });
 
-
-  // $urlRouterProvider.otherwise('tab/play');
   $urlRouterProvider.otherwise('login');
 }
