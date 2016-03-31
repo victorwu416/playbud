@@ -25,7 +25,7 @@ db.skills.insert({
 });
 
 db.skills.insert({
-  months: 3,
+  months: 4,
   shortDescription: "Hit shape on side",
   longDescription: "Position {0} laying on {0}'s side. Put a few shapes next to {0}'s hands. Encourage {0} to hit the shapes randomly.",
   question: "{0} is able to hit a shape randomly, while laying on {0}'s side.",
@@ -33,7 +33,7 @@ db.skills.insert({
 });
 
 db.skills.insert({
-  months: 3,
+  months: 4,
   shortDescription: "Hit shape while seated",
   longDescription: "Position {0} seated and with support. Put a few shapes next to {0}'s hands. Encourage {0} to hit the shapes randomly.",
   question: "{0} is able to hit a shape randomly, while seated and supported.",
@@ -41,7 +41,7 @@ db.skills.insert({
 });
 
 db.skills.insert({
-  months: 3,
+  months: 4,
   shortDescription: "Eye track shape on back",
   longDescription: "Position {0} laying on {0}'s back. Take a shape and move it side to side in front of {0}'s face. See if {0} tracks the shape with {0}'s eyes.",
   question: "{0} is able to track a side to side moving shape with {0}'s eyes, while laying on {0}'s back.",
@@ -49,7 +49,7 @@ db.skills.insert({
 });
 
 db.skills.insert({
-  months: 3,
+  months: 5,
   shortDescription: "Eye track shape on side",
   longDescription: "Position {0} laying on {0}'s side. Take a shape and move it side to side in front of {0}'s face. See if {0} tracks the shape with {0}'s eyes.",
   question: "{0} is able to track a side to side moving shape with {0}'s eyes, while laying on {0}'s side.",
@@ -57,7 +57,7 @@ db.skills.insert({
 });
 
 db.skills.insert({
-  months: 3,
+  months: 5,
   shortDescription: "Eye track shape on tummy",
   longDescription: "Position {0} laying on {0}'s tummy. Take a shape and move it side to side in front of {0}'s face. See if {0} tracks the shape with {0}'s eyes.",
   question: "{0} is able to track a side to side moving shape with {0}'s eyes, while laying on {0}'s tummy.",
@@ -65,7 +65,79 @@ db.skills.insert({
 });
 
 db.skills.insert({
-  months: 3,
+  months: 5,
+  shortDescription: "Eye track shape while seated",
+  longDescription: "Position {0} seated and with support. Take a shape and move it side to side in front of {0}'s face. See if {0} tracks the shape with {0}'s eyes.",
+  question: "{0} is able to track a side to side moving shape with {0}'s eyes, while seated and supported.",
+  imageUrl: "/image3.png"
+});
+
+db.skills.insert({
+  months: 6,
+  shortDescription: "Grasp shape reflexively",
+  longDescription: "Take a shape and touch {0}'s palm or put the shape in the palm of {0}'s hand. See if {0} grasps the shape reflexively as a result.",
+  question: "{0} is able to grasp a shape reflexively when a shape touches or is placed in the palm of {0}'s hand.",
+  imageUrl: "/image1.png"
+});
+
+db.skills.insert({
+  months: 6,
+  shortDescription: "React to tower topple",
+  longDescription: "Build a tower of cups and put it next to {0}. Push it over, toppling it. See if {0} reacts in anyway.",
+  question: "{0} is able to react when a tower of cups topples over.",
+  imageUrl: "/image2.png"
+});
+
+db.skills.insert({
+  months: 6,
+  shortDescription: "Hit shape on back",
+  longDescription: "Position {0} laying on {0}'s back. Put a few shapes next to {0}'s hands. Encourage {0} to hit the shapes randomly.",
+  question: "{0} is able to hit a shape randomly, while laying on {0}'s back.",
+  imageUrl: "/image3.png"
+});
+
+db.skills.insert({
+  months: 7,
+  shortDescription: "Hit shape on side",
+  longDescription: "Position {0} laying on {0}'s side. Put a few shapes next to {0}'s hands. Encourage {0} to hit the shapes randomly.",
+  question: "{0} is able to hit a shape randomly, while laying on {0}'s side.",
+  imageUrl: "/image1.png"
+});
+
+db.skills.insert({
+  months: 7,
+  shortDescription: "Hit shape while seated",
+  longDescription: "Position {0} seated and with support. Put a few shapes next to {0}'s hands. Encourage {0} to hit the shapes randomly.",
+  question: "{0} is able to hit a shape randomly, while seated and supported.",
+  imageUrl: "/image2.png"
+});
+
+db.skills.insert({
+  months: 7,
+  shortDescription: "Eye track shape on back",
+  longDescription: "Position {0} laying on {0}'s back. Take a shape and move it side to side in front of {0}'s face. See if {0} tracks the shape with {0}'s eyes.",
+  question: "{0} is able to track a side to side moving shape with {0}'s eyes, while laying on {0}'s back.",
+  imageUrl: "/image3.png"
+});
+
+db.skills.insert({
+  months: 8,
+  shortDescription: "Eye track shape on side",
+  longDescription: "Position {0} laying on {0}'s side. Take a shape and move it side to side in front of {0}'s face. See if {0} tracks the shape with {0}'s eyes.",
+  question: "{0} is able to track a side to side moving shape with {0}'s eyes, while laying on {0}'s side.",
+  imageUrl: "/image1.png"
+});
+
+db.skills.insert({
+  months: 8,
+  shortDescription: "Eye track shape on tummy",
+  longDescription: "Position {0} laying on {0}'s tummy. Take a shape and move it side to side in front of {0}'s face. See if {0} tracks the shape with {0}'s eyes.",
+  question: "{0} is able to track a side to side moving shape with {0}'s eyes, while laying on {0}'s tummy.",
+  imageUrl: "/image2.png"
+});
+
+db.skills.insert({
+  months: 8,
   shortDescription: "Eye track shape while seated",
   longDescription: "Position {0} seated and with support. Take a shape and move it side to side in front of {0}'s face. See if {0} tracks the shape with {0}'s eyes.",
   question: "{0} is able to track a side to side moving shape with {0}'s eyes, while seated and supported.",

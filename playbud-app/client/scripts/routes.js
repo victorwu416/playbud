@@ -9,39 +9,21 @@ function config($stateProvider, $urlRouterProvider) {
       abstract: true,
       templateUrl: 'client/templates/tabs.html',
     })
-    .state('tab.progress', {
-      url: '/progress',
+    .state('tab.play', {
+      url: '/play',
       views: {
-        'tab-progress': {
-          templateUrl: 'client/templates/progress.html',
-          controller: 'ProgressCtrl as progress'
+        'tab-play': {
+          templateUrl: 'client/templates/play.html',
+          controller: 'PlayCtrl as play'
         }
       }
     })
-    .state('tab.play-ideas', {
-      url: '/play-ideas',
+    .state('tab.skill', {
+      url: '/skills/:skillId',
       views: {
-        'tab-play-ideas': {
-          templateUrl: 'client/templates/play-ideas.html',
-          controller: 'PlayIdeasCtrl as playIdeas'
-        }
-      }
-    })
-    .state('tab.play-idea', {
-      url: '/play-ideas/:skillId',
-      views: {
-        'tab-play-ideas': {
-          templateUrl: 'client/templates/play-idea.html',
-          controller: 'PlayIdeaCtrl as playIdea'
-        }
-      }
-    })
-    .state('tab.evaluate', {
-      url: '/evaluate',
-      views: {
-        'tab-evaluate': {
-          templateUrl: 'client/templates/evaluate.html',
-          controller: 'EvaluateCtrl as evaluate'
+        'tab-play': {
+          templateUrl: 'client/templates/skill.html',
+          controller: 'SkillCtrl as skill'
         }
       }
     })
@@ -60,5 +42,5 @@ function config($stateProvider, $urlRouterProvider) {
           controller: 'SignupCtrl as signup'
     });
 
-  $urlRouterProvider.otherwise('tab/progress');
+  $urlRouterProvider.otherwise('tab/play');
 }
