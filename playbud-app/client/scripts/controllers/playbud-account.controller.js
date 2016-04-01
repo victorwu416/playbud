@@ -21,9 +21,6 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
     },
     showLogInValidationMessage() {
       return _instance.showLogInValidationMessage;
-    },
-    logInValidationMessage() {
-      return _instance.logInValidationMessage;
     }
   });
 
@@ -66,13 +63,11 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
 
   _instance.logIn = function () {
     if (!_instance.email && !_instance.password) {
-      _instance.logInValidationMessage = 'Invalid email and/or password';
       _instance.showLogInValidationMessage = true;
       return;
     }
     Meteor.loginWithPassword(_instance.email, _instance.password, function (error) {
       if (error) {
-        _instance.logInValidationMessage = 'Invalid email and/or password';
         _instance.showLogInValidationMessage = true;
       }
     });

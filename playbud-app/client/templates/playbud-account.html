@@ -7,6 +7,7 @@
         <h2>{{playbudAccount.user.profile.childName}}</h2>
         <p>{{playbudAccount.user.profile.childBirthdate}}</p>
         <button ng-click="playbudAccount.logOut();" class="button button-block button-primary-light">Log Out</button>
+        <p class="link-help"><a href="#/help" class="link-secondary">Account Help</a></p>
       </div>
     </div>
 
@@ -60,12 +61,13 @@
           </label>
         </div>
         <div class="row" ng-show="playbudAccount.showLogInValidationMessage">
-          <div class="col msg-validation">{{playbudAccount.logInValidationMessage}}</div>
+          <div class="col msg-validation">Invalid email and/or password</div>
         </div>
         <div class="row">
           <div class="col"><button ng-click="playbudAccount.cancel();" class="button button-block button-primary-light">Cancel</button></div>
           <div class="col"><button ng-click="playbudAccount.logIn();" class="button button-block button-primary-dark">Log In</button></div>
         </div>
+        <p class="link-reset-password"><a href="#/help" class="link-secondary">Reset Password</a></p>
       </div>
     </div>
 

@@ -8,6 +8,10 @@ function config($stateProvider, $urlRouterProvider) {
       url: '/first',
         templateUrl: 'client/templates/first.html'
     })
+    .state('help', {
+      url: '/help',
+        templateUrl: 'client/templates/help.html'        
+    })
     .state('tab', {
       url: '/tab',
       abstract: true,

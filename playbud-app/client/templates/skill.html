@@ -10,7 +10,7 @@
         <p><skill-state state="skill.skill.state"></skill-state></p>
         <div ng-show="skill.skill.state!=='passed' && skill.skill.state!=='skipped'">
           <button ng-click="skill.section='evaluate'" class="button button-block button-primary-dark">Evaluate</button>
-          <p ng-click="skill.section='skip'" class="link-secondary">Skip</p>
+          <p ng-click="skill.section='skip'" class="link-skip"><span class="link-secondary">Skip</span></p>
         </div>
       </div>
     </div>
