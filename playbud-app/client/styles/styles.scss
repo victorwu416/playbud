@@ -2,6 +2,11 @@ a {
   text-decoration: none;
 }
 
+.msg-validation {
+  color: brown;
+  font-weight: bold;
+}
+
 .button-primary-dark {
   background-color: #29AB87;
   color: white;
@@ -25,7 +30,7 @@ a {
 }
 
 .link-secondary {
-  color: brown;
+  color: brown !important;
   font-weight: bold;
   text-align: center;
 }

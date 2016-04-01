@@ -18,46 +18,49 @@
     </div>
 
     <div class="card" ng-show="!playbudAccount.user && playbudAccount.loggedOutSection==='signUp'">
-      <div class="list">
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Email</span>
-          <input type="email" placeholder="parent@playbud.me" ng-model="playbudAccount.email">
-        </label>
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Password</span>
-          <input type="text" placeholder="Something unforgettable" ng-model="playbudAccount.password">
-        </label>
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Child's Name</span>
-          <input type="text" placeholder="Chloe" ng-model="playbudAccount.childName">
-        </label>
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Child's Birthdate</span>
-          <input type="date" placeholder="3/14/2016" ng-model="playbudAccount.childBirthdate">
-        </label>
-      </div>
       <div class="item item-body">
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Email</span>
+            <input type="email" placeholder="parent@playbud.me" ng-model="playbudAccount.email">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Password</span>
+            <input type="text" placeholder="Something unforgettable" ng-model="playbudAccount.password">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Child's Name</span>
+            <input type="text" placeholder="Chloe" ng-model="playbudAccount.childName">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Child's Birthdate</span>
+            <input type="date" placeholder="3/14/2016" ng-model="playbudAccount.childBirthdate">
+          </label>
+        </div>
+        <div class="row" ng-show="playbudAccount.showSignUpValidationMessage">
+          <div class="col msg-validation">{{playbudAccount.signUpValidationMessage}}</div>
+        </div>
         <div class="row">
-          <div class="col"><button ng-click="playbudAccount.loggedOutSection='signUpLogIn';" class="button button-block button-primary-light">Cancel</button></div>
+          <div class="col"><button ng-click="playbudAccount.cancel();" class="button button-block button-primary-light">Cancel</button></div>
           <div class="col"><button ng-click="playbudAccount.createPlaybudAccountAndLogIn();" class="button button-block button-primary-dark">Create Account</button></div>
         </div>
       </div>
     </div>
 
     <div class="card" ng-show="!playbudAccount.user && playbudAccount.loggedOutSection==='logIn'">
-      <div class="list">
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Email</span>
-          <input type="email" placeholder="parent@playbud.me" ng-model="playbudAccount.email">
-        </label>
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Password</span>
-          <input type="text" placeholder="Something unforgettable" ng-model="playbudAccount.password">
-        </label>
-      </div>
       <div class="item item-body">
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Email</span>
+            <input type="email" placeholder="parent@playbud.me" ng-model="playbudAccount.email">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Password</span>
+            <input type="text" placeholder="Something unforgettable" ng-model="playbudAccount.password">
+          </label>
+        </div>
         <div class="row">
-          <div class="col"><button ng-click="playbudAccount.loggedOutSection='signUpLogIn';" class="button button-block button-primary-light">Cancel</button></div>
+          <div class="col"><button ng-click="playbudAccount.cancel();" class="button button-block button-primary-light">Cancel</button></div>
           <div class="col"><button ng-click="playbudAccount.logIn();" class="button button-block button-primary-dark">Log In</button></div>
         </div>
       </div>
