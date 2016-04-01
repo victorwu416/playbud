@@ -2,30 +2,55 @@ angular
   .module('Playbud')
   .controller('PlaybudAccountCtrl', PlaybudAccountCtrl);
 
-function PlaybudAccountCtrl ($scope, $reactive) {
-  $reactive(this).attach($scope);
+function PlaybudAccountCtrl($scope, $reactive) {
+  var _instance = this;
+  $reactive(_instance).attach($scope);
 
-  this.subscribe('parent');
-  this.helpers({
-    parent() {
-      var parent = Parents.findOne({userId: Meteor.userId()});
-      if (!parent) {
-        parent = {
-          childFirstName: '',
-          childDateOfBirth: ''
-        };
-      }
-      return parent;
+  _instance.helpers({
+    user() {
+      return Meteor.user();
+    },
+    loggedOutSection() {
+      return _instance.loggedOutSection;
     }
   });
 
-  this.updateParent = updateParent;
+  _instance.loggedOutSection = 'signUpLogIn';
 
-  function updateParent () {
-    var updatedParent = {
-      childFirstName: this.parent.childFirstName,
-      childDateOfBirth: this.parent.childDateOfBirth
-    }
-    Meteor.call('updateParent', updatedParent);
+  _instance.createPlaybudAccountAndLogIn = function () {
+    Meteor.call(
+      'createPlaybudAccount',
+      _instance.email,
+      _instance.password,
+      _instance.childName,
+      _instance.childBirthdate,
+      function(error) {
+        if (error) {
+          throw new Meteor.Error('method-call-createPlaybudAccount', 'Error creating Playbud account');
+        } else {
+          _instance.logIn();
+        }
+      }
+    );
+  };
+
+  _instance.logOut = function () {
+    Meteor.logout(function (error) {
+      if (error) {
+        throw new Meteor.Error('meteor-logout', 'Error logging out');
+      } else {
+        console.log('logged out');
+      }
+    });
+  };
+
+  _instance.logIn = function () {
+    Meteor.loginWithPassword(_instance.email, _instance.password, function (error) {
+      if (error) {
+        throw new Meteor.Error('meteor-loginWithPassword', 'Error logging in with password');
+      } else {
+        console.log('logged in');
+      }
+    });
   }
 }

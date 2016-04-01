@@ -1,8 +1,7 @@
 angular
   .module('Playbud', [
-    'accounts.ui',
+    // 'accounts.ui',
     'angular-meteor',
-    'angularMoment',
     'ionic'
   ]);
 

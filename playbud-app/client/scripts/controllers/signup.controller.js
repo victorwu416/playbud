@@ -9,12 +9,12 @@ function SignupCtrl ($scope, $reactive, $state) {
   function SignUp() {
 
     // create user account
-    Meteor.call('createUserAccount', this.email, this.password);
-
-    // login and redirect to user profile
-    Meteor.loginWithPassword(this.email, this.password, function(error) {
-      $state.go("tab.account");
-    });
+    // Meteor.call('createUserAccount', this.email, this.password);
+    //
+    // // login and redirect to user profile
+    // Meteor.loginWithPassword(this.email, this.password, function(error) {
+    //   $state.go("tab.account");
+    // });
 
   };
 

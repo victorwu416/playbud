@@ -2,7 +2,7 @@ angular
   .module('Playbud')
   .controller('SkillCtrl', SkillCtrl);
 
-function SkillCtrl ($reactive, $scope, $stateParams, SkillsTransform) {
+function SkillCtrl($reactive, $scope, $stateParams, SkillsTransform) {
   var _instance = this;
   $reactive(_instance).attach($scope);
 
@@ -53,7 +53,7 @@ function SkillCtrl ($reactive, $scope, $stateParams, SkillsTransform) {
       'skip',
       function(error, result) {
         if (error) {
-          throw new Meteor.Error('method-call-submitAnswer', 'Error submitting answer');
+          throw new Meteor.Error('method-call-submitAnswer', 'Error submitting answer, skip');
         }
       }
     );

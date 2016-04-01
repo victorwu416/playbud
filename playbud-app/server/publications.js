@@ -1,12 +1,3 @@
-Meteor.publish('parent', function () {
-  if (!this.userId) {
-    throw new Meteor.Error('not-logged-in', 'Must be logged in to publish parent');
-  }
-  return Parents.find({
-    userId: this.userId
-  });
-});
-
 Meteor.publishComposite('skills', function (bottomMonths) {
   if (!this.userId) {
     throw new Meteor.Error('not-logged-in', 'Must be logged in to access published skills');

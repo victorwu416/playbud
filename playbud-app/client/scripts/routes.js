@@ -1,35 +1,40 @@
 angular
   .module('Playbud')
-  .config(config)
-  .run(run);
+  .config(config);
+  // .run(run);
 
 
-  function run($rootScope, $state) {
-
-      $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
-        if( error  === 'not authorized' ){
-            return $state.go( 'login' );
-        }
-      });
-  }
+  // function run($rootScope, $state) {
+  //
+  //     $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
+  //       if( error  === 'not authorized' ){
+  //           return $state.go( 'login' );
+  //       }
+  //     });
+  // }
 
 function config($stateProvider, $urlRouterProvider) {
 
   $stateProvider
+    .state('first', {
+      url: '/first',
+        templateUrl: 'client/templates/first.html',
+        controller: 'FirstCtrl as first'
+    })
     .state('tab', {
       url: '/tab',
       abstract: true,
-      templateUrl: 'client/templates/tabs.html',
-      resolve: {
-        currentUser: ($q) => {
-          if (Meteor.userId() == null) {
-            return $q.reject();
-          }
-          else {
-            return $q.resolve();
-          }
-        }
-      }
+      templateUrl: 'client/templates/tabs.html'
+      // resolve: {
+      //   currentUser: ($q) => {
+      //     if (Meteor.userId() == null) {
+      //       return $q.reject();
+      //     }
+      //     else {
+      //       return $q.resolve();
+      //     }
+      //   }
+      // }
     })
     .state('tab.play', {
       url: '/play',
@@ -49,16 +54,25 @@ function config($stateProvider, $urlRouterProvider) {
         }
       }
     })
-    .state('signup', {
-      url: '/signup',
-          templateUrl: 'client/templates/signup.html',
-          controller: 'SignupCtrl as signup'
-    })
-    .state('login', {
-      url: '/login',
-          templateUrl: 'client/templates/login.html',
-          controller: 'LoginCtrl as login'
+    .state('tab.playbud-account', {
+      url: '/playbud-account',
+      views: {
+        'tab-playbud-account': {
+          templateUrl: 'client/templates/playbud-account.html',
+          controller: 'PlaybudAccountCtrl as playbudAccount'
+        }
+      }
     });
+    // .state('signup', {
+    //   url: '/signup',
+    //       templateUrl: 'client/templates/signup.html',
+    //       controller: 'SignupCtrl as signup'
+    // })
+    // .state('login', {
+    //   url: '/login',
+    //       templateUrl: 'client/templates/login.html',
+    //       controller: 'LoginCtrl as login'
+    // });
 
-  $urlRouterProvider.otherwise('login');
+    $urlRouterProvider.otherwise('first');
 }

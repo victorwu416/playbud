@@ -1,22 +1,16 @@
 Meteor.methods({
-  updateParent (parent) {
-    if (parent.childDateOfBirth) {
-      check(parent, {childFirstName: String, childDateOfBirth: Date});
-    } else {
-      check(parent, {childFirstName: String, childDateOfBirth: String});
-    }
-    if (!this.userId) {
-      throw new Meteor.Error('not-logged-in', 'Must be logged in to update parent');
-    }
-    return Parents.upsert(
-      {userId: this.userId},
-        {
-          $set: {
-            userId: this.userId,
-            childFirstName: parent.childFirstName,
-            childDateOfBirth: parent.childDateOfBirth
-          }
-        }
-      );
+  createPlaybudAccount(email, password, childName, childBirthdate) {
+    check(email, String);
+    check(password, String);
+    check(childName, String);
+    check(childBirthdate, Date);
+    Accounts.createUser({
+      email: email,
+      password: password,
+      profile: {
+        childName: childName,
+        childBirthdate: childBirthdate
+      }
+    });
   }
-});  
+});
