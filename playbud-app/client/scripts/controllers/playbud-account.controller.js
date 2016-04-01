@@ -2,7 +2,7 @@ angular
   .module('Playbud')
   .controller('PlaybudAccountCtrl', PlaybudAccountCtrl);
 
-function PlaybudAccountCtrl($scope, $reactive) {
+function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
   var _instance = this;
   $reactive(_instance).attach($scope);
 
@@ -15,7 +15,7 @@ function PlaybudAccountCtrl($scope, $reactive) {
     }
   });
 
-  _instance.loggedOutSection = 'signUpLogIn';
+  _instance.loggedOutSection = $stateParams.loggedOutSection
 
   _instance.createPlaybudAccountAndLogIn = function () {
     Meteor.call(
@@ -39,7 +39,7 @@ function PlaybudAccountCtrl($scope, $reactive) {
       if (error) {
         throw new Meteor.Error('meteor-logout', 'Error logging out');
       } else {
-        console.log('logged out');
+        _instance.loggedOutSection = 'signUpLogIn';
       }
     });
   };
@@ -48,8 +48,6 @@ function PlaybudAccountCtrl($scope, $reactive) {
     Meteor.loginWithPassword(_instance.email, _instance.password, function (error) {
       if (error) {
         throw new Meteor.Error('meteor-loginWithPassword', 'Error logging in with password');
-      } else {
-        console.log('logged in');
       }
     });
   }

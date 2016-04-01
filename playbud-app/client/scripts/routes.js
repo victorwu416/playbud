@@ -14,7 +14,6 @@ angular
   // }
 
 function config($stateProvider, $urlRouterProvider) {
-
   $stateProvider
     .state('first', {
       url: '/first',
@@ -55,7 +54,7 @@ function config($stateProvider, $urlRouterProvider) {
       }
     })
     .state('tab.playbud-account', {
-      url: '/playbud-account',
+      url: '/playbud-account/:loggedOutSection',
       views: {
         'tab-playbud-account': {
           templateUrl: 'client/templates/playbud-account.html',
@@ -63,16 +62,21 @@ function config($stateProvider, $urlRouterProvider) {
         }
       }
     });
-    // .state('signup', {
-    //   url: '/signup',
-    //       templateUrl: 'client/templates/signup.html',
-    //       controller: 'SignupCtrl as signup'
-    // })
-    // .state('login', {
-    //   url: '/login',
-    //       templateUrl: 'client/templates/login.html',
-    //       controller: 'LoginCtrl as login'
-    // });
 
-    $urlRouterProvider.otherwise('first');
+  $urlRouterProvider.otherwise(function ($injector, $location) {
+    if (Meteor.user()) {
+      console.log('logggggeeeeddd in!!!!!!!!!');
+      return 'tab/play';
+    } else {
+      console.log('logggggeeeeddd out!!!!!!!!!');
+      return 'first';
+    }
+  });
+  //
+  // if (Meteor.user()) {
+  //   console.log('logged in!!!!');
+  //   $urlRouterProvider.otherwise('tab/play');
+  // } else {
+  //   $urlRouterProvider.otherwise('first');
+  // }
 }
