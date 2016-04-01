@@ -59,6 +59,9 @@
             <input type="text" placeholder="Something unforgettable" ng-model="playbudAccount.password">
           </label>
         </div>
+        <div class="row" ng-show="playbudAccount.showLogInValidationMessage">
+          <div class="col msg-validation">{{playbudAccount.logInValidationMessage}}</div>
+        </div>
         <div class="row">
           <div class="col"><button ng-click="playbudAccount.cancel();" class="button button-block button-primary-light">Cancel</button></div>
           <div class="col"><button ng-click="playbudAccount.logIn();" class="button button-block button-primary-dark">Log In</button></div>

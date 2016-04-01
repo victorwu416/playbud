@@ -22,3 +22,4 @@ reywood:publish-composite
 standard-minifier-css
 standard-minifier-js
 accounts-password
+momentjs:moment

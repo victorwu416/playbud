@@ -18,11 +18,18 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
     },
     signUpValidationMessage() {
       return _instance.signUpValidationMessage;
+    },
+    showLogInValidationMessage() {
+      return _instance.showLogInValidationMessage;
+    },
+    logInValidationMessage() {
+      return _instance.logInValidationMessage;
     }
   });
 
   _instance.loggedOutSection = $stateParams.loggedOutSection;
   _instance.showSignUpValidationMessage = false;
+  _instance.showLogInValidationMessage = false;
 
   _instance.createPlaybudAccountAndLogIn = function () {
     if (!clientValidateSignUp()) {
@@ -52,24 +59,32 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
         throw new Meteor.Error('meteor-logout', 'Error logging out');
       } else {
         _instance.loggedOutSection = 'signUpLogIn';
+        _instance.email = _instance.password = _instance.childName = _instance.childBirthdate = null;
       }
     });
   };
 
   _instance.logIn = function () {
+    if (!_instance.email && !_instance.password) {
+      _instance.logInValidationMessage = 'Invalid email and/or password';
+      _instance.showLogInValidationMessage = true;
+      return;
+    }
     Meteor.loginWithPassword(_instance.email, _instance.password, function (error) {
       if (error) {
-        throw new Meteor.Error('meteor-loginWithPassword', 'Error logging in with password');
+        _instance.logInValidationMessage = 'Invalid email and/or password';
+        _instance.showLogInValidationMessage = true;
       }
     });
   }
 
   _instance.cancel = function () {
-    _instance.showSignUpValidationMessage = true;
+    _instance.showSignUpValidationMessage = _instance.showLogInValidationMessage = false;
     _instance.loggedOutSection='signUpLogIn';
+    _instance.password = null;
   }
 
-  function clientValidateSignUp () {
+  function clientValidateSignUp() {
     _instance.signUpValidationMessage = '';
     if (!_instance.email) {
       _instance.signUpValidationMessage = 'Enter valid email';
@@ -79,11 +94,18 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
       _instance.signUpValidationMessage = 'Enter child\'s name';
     } else if (!_instance.childBirthdate) {
       _instance.signUpValidationMessage = 'Enter valid child\'s birthdate';
+    } else if (!validateBirthDate()) {
+      _instance.signUpValidationMessage = 'Playbud only works now for children 3 to 18 months';
     }
     if (_instance.signUpValidationMessage) {
       _instance.showSignUpValidationMessage = true;
       return false;
     }
     return true;
+  }
+
+  function validateBirthDate() {
+    var childMonths = moment().diff(_instance.childBirthdate, 'months');
+    return (childMonths >=3) && (childMonths <= 18) ? true : false;
   }
 }
