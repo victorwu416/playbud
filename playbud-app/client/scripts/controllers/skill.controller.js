@@ -15,6 +15,9 @@ function SkillCtrl($reactive, $scope, $stateParams, SkillsTransform) {
     },
     selectedAnswerOptionValue() {
       return _instance.selectedAnswerOptionValue;
+    },
+    childName() {
+      return Meteor.user() ? Meteor.user().profile.childName : 'Your Child';
     }
   });
 

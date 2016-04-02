@@ -1,6 +1,7 @@
 angular
   .module('Playbud')
-  .config(config);
+  .config(config)
+  .run(run);
 
 function config($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -28,6 +29,15 @@ function config($stateProvider, $urlRouterProvider) {
           templateUrl: 'client/templates/play.html',
           controller: 'PlayCtrl as play'
         }
+      },
+      resolve: {
+        currentUser: ($q) => {
+          if (Meteor.user()) {
+            return $q.resolve();
+          } else {
+            return $q.reject('not-authorized');
+          }
+        }
       }
     })
     .state('tab.skill', {
@@ -49,11 +59,13 @@ function config($stateProvider, $urlRouterProvider) {
       }
     });
 
-  $urlRouterProvider.otherwise(function ($injector, $location) {
-    if (Meteor.user()) {
-      return 'tab/play';
-    } else {
-      return 'first';
+  $urlRouterProvider.otherwise('tab/play');
+}
+
+function run($rootScope, $state) {
+  $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
+    if (error === 'not-authorized') {
+      return $state.go('first');
     }
   });
 }

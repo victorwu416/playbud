@@ -6,6 +6,9 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
   var _instance = this;
   $reactive(_instance).attach($scope);
 
+  console.log('plabyudaccount');
+  console.log(Meteor.user());
+
   _instance.helpers({
     user() {
       return Meteor.user();

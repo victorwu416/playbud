@@ -5,8 +5,8 @@
 
     <div class="card" ng-show="skill.section==='skill'">
       <div class="item item-body">
-        <h2>{{skill.skill.shortDescription}}</h2>
-        <p>{{skill.skill.longDescription}}</p>
+        <h2>{{skill.skill.shortDescription}}</h2>        
+        <p><skill-long-description long-description="skill.skill.longDescription" child-name="skill.childName"></skill-long-description></p>
         <p><skill-state state="skill.skill.state"></skill-state></p>
         <div ng-show="skill.skill.state!=='passed' && skill.skill.state!=='skipped'">
           <button ng-click="skill.section='evaluate'" class="button button-block button-primary-dark">Evaluate</button>
