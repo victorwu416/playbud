@@ -3,7 +3,7 @@ Meteor.methods({
     check(email, String);
     check(password, String);
     check(childName, String);
-    check(childBirthdate, Date);    
+    check(childBirthdate, Date);
     Accounts.createUser({
       email: email,
       password: password,
@@ -19,6 +19,9 @@ Meteor.methods({
     if (!Meteor.user()) {
       throw new Meteor.Error('not-logged-in', 'Must be logged in to update have toy');
     }
-    Meteor.users.update( {_id: Meteor.userId()}, {$set: {'profile.haveToy': haveToy}});
+    Meteor.users.update(
+      {_id: Meteor.userId()},
+      {$set: {'profile.haveToy': haveToy}}
+    );
   }
 });
