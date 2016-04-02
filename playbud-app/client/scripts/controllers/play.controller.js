@@ -25,7 +25,7 @@ function PlayCtrl($reactive, $scope, SkillsTransform) {
 
   _instance.moreSkillsAvailable = true;
   _instance.lastSkillId = '';
-  _instance.bottomMonths = 5;
+  _instance.bottomMonths = 1;
 
   _instance.subscribe('skills', () => [_instance.bottomMonths]);
 
