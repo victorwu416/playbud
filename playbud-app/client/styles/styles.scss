@@ -1,0 +1,57 @@
+.button-primary-dark {
+  background-color: #29AB87;
+  color: white;
+}
+
+.button-primary-light {
+  background-color: white;
+  color: #29AB87;
+  border-color: #29AB87;
+}
+
+.button-secondary-dark {
+  background-color: brown;
+  color: white;
+}
+
+.button-secondary-light {
+  background-color: white;
+  color: brown;
+  border-color: brown;
+}
+
+.link-primary {
+  color: #29AB87 !important;
+  font-weight: bold;
+}
+
+.link-secondary {
+  color: brown !important;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+}
+
+.msg-validation {
+  color: brown;
+  font-weight: bold;
+}
+
+.checkbox input:checked + .checkbox-icon:before {
+  background: #29AB87;
+  border-color: #29AB87;
+}
+
+.link-reset-password {
+  text-align: center;
+}
+
+.link-help {
+  text-align: center;
+}
+
+.link-skip {
+  text-align: center;
+}
