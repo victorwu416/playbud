@@ -3,9 +3,15 @@
 
     <div class="card" ng-show="playbudAccount.user">
       <div class="item item-body">
-        <p>{{playbudAccount.user.emails[0].address}}</p>
-        <h2>{{playbudAccount.user.profile.childName}}</h2>
-        <p>{{playbudAccount.user.profile.childBirthdate}}</p>
+        <p>{{playbudAccount.email}}</p>
+        <h2>{{playbudAccount.childName}}</h2>
+        <p>{{playbudAccount.childMonths}} months</p>
+        <ion-list>
+          <ion-checkbox ng-change="playbudAccount.updateHaveToy();" ng-model="playbudAccount.haveToy">I have the toy</ion-checkbox>
+        </ion-list>
+        <div ng-show="!playbudAccount.haveToy">
+          <a href="#/toy"><button class="button button-block button-primary-dark">Get Free Toy</button></a>
+        </div>
         <button ng-click="playbudAccount.logOut();" class="button button-block button-primary-light">Log Out</button>
         <p class="link-help"><a href="#/help" class="link-secondary">Account Help</a></p>
       </div>

@@ -9,8 +9,13 @@ Meteor.methods({
       password: password,
       profile: {
         childName: childName,
-        childBirthdate: childBirthdate
+        childBirthdate: childBirthdate,
+        haveToy: false
       }
     });
+  },
+  updateHaveToy(haveToy) {
+    check(haveToy, Boolean);
+    Meteor.users.update( {_id: Meteor.userId()}, {$set: {'profile.haveToy': haveToy}});
   }
 });

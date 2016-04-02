@@ -10,6 +10,18 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
     user() {
       return Meteor.user();
     },
+    email() {
+      return Meteor.user() ? Meteor.user().emails[0].address : '';
+    },
+    childName() {
+      return Meteor.user() ? Meteor.user().profile.childName : '';
+    },
+    childMonths() {
+      return Meteor.user() ? moment().diff(Meteor.user().profile.childBirthdate, 'months') : -1;
+    },
+    haveToy() {
+      return _instance.haveToy;
+    },
     loggedOutSection() {
       return _instance.loggedOutSection;
     },
@@ -24,6 +36,7 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
     }
   });
 
+  _instance.haveToy = Meteor.user() ? Meteor.user().profile.haveToy : false;
   _instance.loggedOutSection = $stateParams.loggedOutSection;
   _instance.showSignUpValidationMessage = false;
   _instance.showLogInValidationMessage = false;
@@ -50,17 +63,6 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
     );
   };
 
-  _instance.logOut = function () {
-    Meteor.logout(function (error) {
-      if (error) {
-        throw new Meteor.Error('meteor-logout', 'Error logging out');
-      } else {
-        _instance.loggedOutSection = 'signUpLogIn';
-        _instance.email = _instance.password = _instance.childName = _instance.childBirthdate = null;
-      }
-    });
-  };
-
   _instance.logIn = function () {
     if (!_instance.email && !_instance.password) {
       _instance.showLogInValidationMessage = true;
@@ -73,10 +75,33 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
     });
   }
 
+  _instance.logOut = function () {
+    Meteor.logout(function (error) {
+      if (error) {
+        throw new Meteor.Error('meteor-logout', 'Error logging out');
+      } else {
+        _instance.loggedOutSection = 'signUpLogIn';
+        _instance.email = _instance.password = _instance.childName = _instance.childBirthdate = null;
+      }
+    });
+  };
+
   _instance.cancel = function () {
     _instance.showSignUpValidationMessage = _instance.showLogInValidationMessage = false;
     _instance.loggedOutSection='signUpLogIn';
     _instance.password = null;
+  }
+
+  _instance.updateHaveToy = function () {
+    Meteor.call(
+      'updateHaveToy',
+      _instance.haveToy,
+      function(error, result) {
+        if (error) {
+          throw new Meteor.Error('method-call-updateHaveToy', 'Error updating have toy');
+        }
+      }
+    );
   }
 
   function clientValidateSignUp() {
@@ -90,7 +115,7 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
     } else if (!_instance.childBirthdate) {
       _instance.signUpValidationMessage = 'Enter valid child\'s birthdate';
     } else if (!validateBirthDate()) {
-      _instance.signUpValidationMessage = 'Playbud only works now for children 3 to 18 months';
+      _instance.signUpValidationMessage = 'Playbud only works with children 3 to 18 months';
     }
     if (_instance.signUpValidationMessage) {
       _instance.showSignUpValidationMessage = true;

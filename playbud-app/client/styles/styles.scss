@@ -39,6 +39,11 @@ a {
   font-weight: bold;
 }
 
+.checkbox input:checked + .checkbox-icon:before {
+  background: #29AB87;
+  border-color: #29AB87;
+}
+
 .link-reset-password {
   text-align: center;
 }

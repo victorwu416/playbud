@@ -10,7 +10,11 @@ function config($stateProvider, $urlRouterProvider) {
     })
     .state('help', {
       url: '/help',
-        templateUrl: 'client/templates/help.html'        
+        templateUrl: 'client/templates/help.html'
+    })
+    .state('toy', {
+      url: '/toy',
+        templateUrl: 'client/templates/toy.html'
     })
     .state('tab', {
       url: '/tab',
