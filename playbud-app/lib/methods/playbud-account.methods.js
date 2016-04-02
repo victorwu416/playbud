@@ -1,10 +1,11 @@
+if (Meteor.isServer) {
 Meteor.methods({
   createPlaybudAccount(email, password, childName, childBirthdate) {
     check(email, String);
     check(password, String);
     check(childName, String);
     check(childBirthdate, Date);
-    Accounts.createUser({
+    var userId = Accounts.createUser({
       email: email,
       password: password,
       profile: {
@@ -13,6 +14,7 @@ Meteor.methods({
         haveToy: false
       }
     });
+    return userId;
   },
   updateHaveToy(haveToy) {
     check(haveToy, Boolean);
@@ -25,3 +27,4 @@ Meteor.methods({
     );
   }
 });
+}

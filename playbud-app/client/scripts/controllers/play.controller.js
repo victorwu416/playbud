@@ -7,6 +7,9 @@ function PlayCtrl($reactive, $scope, SkillsTransform) {
   $reactive(_instance).attach($scope);
 
   _instance.helpers({
+    user() {
+      return Meteor.user();
+    },
     nextSkills() {
       updateSkills();
       return _instance.nextSkills;
@@ -27,11 +30,11 @@ function PlayCtrl($reactive, $scope, SkillsTransform) {
   _instance.lastSkillId = '';
   _instance.bottomMonths = 1;
 
-  _instance.subscribe('skills', () => [_instance.bottomMonths]);
+  _instance.subscribe('skills', () => [_instance.bottomMonths, Session.get('ephemeralUserId')]);
 
   _instance.getMoreSkills = function() {
     _instance.bottomMonths -= 1;
-    _instance.subscribe('skills', () => [_instance.bottomMonths], function() {
+    _instance.subscribe('skills', () => [_instance.bottomMonths, Session.get('ephemeralUserId')], function() {
       updateSkills();
       updateMoreSkillsAvailable();
       $scope.$broadcast('scroll.infiniteScrollComplete');

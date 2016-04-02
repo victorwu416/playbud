@@ -34,6 +34,35 @@ a {
   text-decoration: none;
 }
 
+.tabs {
+  .icon {
+    color: #29AB87;
+  },
+  .tab-title {
+    color: #29AB87;
+  }
+}
+
+.play .divider-skills {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.play .banner-ephemeral-account {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  text-align: center;
+}
+
+.play .button-ephemeral-sign-up {
+  min-height: initial;
+  line-height: initial;
+  background-color: #29AB87;
+  color: white;
+}
+
 .msg-validation {
   color: brown;
   font-weight: bold;

@@ -1,8 +1,6 @@
-Meteor.publishComposite('skills', function (bottomMonths) {
-  if (!this.userId) {
-    throw new Meteor.Error('not-logged-in', 'Must be logged in to access published skills');
-  }
+Meteor.publishComposite('skills', function (bottomMonths, ephemeralUserId) {
   check(bottomMonths, Match.Integer);
+  check(ephemeralUserId, String);
   return {
     find: function() {
       var childMonths = 8; // TODO: Get child's age dynamically, when we incorporate the sign up flow and user management.
@@ -18,7 +16,8 @@ Meteor.publishComposite('skills', function (bottomMonths) {
       {
         collectionName: "skillAnswers",
         find: function (skill) {
-          return Answers.find({skillId: skill._id.valueOf()});
+          var userId = this.userId ? this.userId : ephemeralUserId;
+          return Answers.find({$and: [{userId: userId}, {skillId: skill._id.valueOf()}]});
         }
       }
     ]

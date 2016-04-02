@@ -7,7 +7,8 @@ function config($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('first', {
       url: '/first',
-        templateUrl: 'client/templates/first.html'
+        templateUrl: 'client/templates/first.html',
+        controller: 'FirstCtrl as first'
     })
     .state('help', {
       url: '/help',
@@ -32,10 +33,10 @@ function config($stateProvider, $urlRouterProvider) {
       },
       resolve: {
         currentUser: ($q) => {
-          if (Meteor.user()) {
-            return $q.resolve();
+          if (!Meteor.user() && !Session.get('ephemeralUserId')) {
+            return $q.reject('not-logged-in-not-ephemeral-user');
           } else {
-            return $q.reject('not-authorized');
+            return $q.resolve();
           }
         }
       }
@@ -64,8 +65,9 @@ function config($stateProvider, $urlRouterProvider) {
 
 function run($rootScope, $state) {
   $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
-    if (error === 'not-authorized') {
+    if (error === 'not-logged-in-not-ephemeral-user') {
       return $state.go('first');
     }
   });
+  Session.set('ephemeralUserId', '');
 }

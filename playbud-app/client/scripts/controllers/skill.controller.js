@@ -40,6 +40,7 @@ function SkillCtrl($reactive, $scope, $stateParams, SkillsTransform) {
       'submitAnswer',
       _instance.skill,
       _instance.selectedAnswerOptionValue,
+      Session.get('ephemeralUserId'),
       function(error, result) {
         if (error) {
           throw new Meteor.Error('method-call-submitAnswer', 'Error submitting answer');
@@ -54,6 +55,7 @@ function SkillCtrl($reactive, $scope, $stateParams, SkillsTransform) {
       'submitAnswer',
       _instance.skill,
       'skip',
+      Session.get('ephemeralUserId'),
       function(error, result) {
         if (error) {
           throw new Meteor.Error('method-call-submitAnswer', 'Error submitting answer, skip');

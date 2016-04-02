@@ -1,7 +1,10 @@
 <ion-view view-title="Play">
   <ion-content class="play">
     <div class="list">
-      <div class="item item-divider">NEXT</div>
+      <div class="item item-divider banner-ephemeral-account" ng-show="!play.user">
+        Results not saved while trying
+      </div>
+      <div class="item item-divider divider-skills">NEXT</div>
       <a
         ng-repeat="skill in play.nextSkills"
         href="#/tab/skills/{{skill._id.valueOf()}}"
@@ -13,7 +16,7 @@
         <p>Last evaluated Mar 24, 2016</p>
       </a>
 
-      <div class="item item-divider">DONE</div>
+      <div class="item item-divider divider-skills">DONE</div>
       <a
         ng-repeat="skill in play.doneSkills"
         href="#/tab/skills/{{skill._id.valueOf()}}"
