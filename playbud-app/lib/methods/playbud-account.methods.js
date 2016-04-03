@@ -11,7 +11,8 @@ Meteor.methods({
       profile: {
         childName: childName,
         childBirthdate: childBirthdate,
-        haveToy: false
+        haveToy: false,
+        created: moment().toDate()
       }
     });
     return userId;

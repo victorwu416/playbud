@@ -10,6 +10,20 @@ function PlayCtrl($reactive, $scope, SkillsTransform) {
     user() {
       return Meteor.user();
     },
+    childName() {
+      if (!Meteor.user()) {
+        return 'Your Child';
+      } else {
+        return Meteor.user().profile.childName;
+      }
+    },
+    atChildMonthsMonths() {
+      if (!Meteor.user()) {
+        return '';
+      } else {
+        return 'at ' + moment().diff(Meteor.user().profile.childBirthdate, 'months') + ' months';
+      }
+    },
     nextSkills() {
       updateSkills();
       return _instance.nextSkills;

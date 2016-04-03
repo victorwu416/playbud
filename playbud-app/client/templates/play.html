@@ -2,9 +2,12 @@
   <ion-content class="play">
     <div class="list">
       <div class="item item-divider banner-ephemeral-account" ng-show="!play.user">
-        Results not saved while trying
+        Results not saved during trial
       </div>
       <div class="item item-divider divider-skills">NEXT</div>
+      <p class="item msg-finished-skills" ng-show="play.nextSkills.length===0">
+        Congratulations! {{play.childName}} has completed all available age-appropriate skills {{play.atChildMonthsMonths}}
+      </p>
       <a
         ng-repeat="skill in play.nextSkills"
         href="#/tab/skills/{{skill._id.valueOf()}}"

@@ -3,10 +3,19 @@ Meteor.publishComposite('skills', function (bottomMonths, ephemeralUserId) {
   check(ephemeralUserId, String);
   return {
     find: function() {
-      var childMonths = 8; // TODO: Get child's age dynamically, when we incorporate the sign up flow and user management.
-      //TODO: Pass in some bottom range that is persisted with the child. This is helps so we don't have to go too far back when querying the db.
-      // For now, assume the bottom range is the entire db.
-      var selector = {months: {$gte: bottomMonths, $lte: childMonths+1}};
+      var userId = this.userId ? this.userId : ephemeralUserId;
+      var user = Meteor.users.findOne({_id: userId});
+      if (!user) {
+        throw new Meteor.Error('publishComposite-skills', 'Error finding a user when publishing skills');
+      }
+
+      var childMonths = moment().diff(user.profile.childBirthdate, 'months');
+      var childMonthsInitial = moment(user.profile.created).diff(user.profile.childBirthdate, 'months');
+
+      console.log(childMonths);
+      console.log(childMonthsInitial);
+
+      var selector = {months: {$gte: childMonthsInitial, $lte: childMonths+1}};
       var options = {
         sort: {months: -1, shortDescription: 1}
       };
