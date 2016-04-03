@@ -33,10 +33,12 @@ function config($stateProvider, $urlRouterProvider) {
       },
       resolve: {
         currentUser: ($q) => {
-          if (!Meteor.user() && !Session.get('ephemeralUserId')) {
-            return $q.reject('not-logged-in-not-ephemeral-user');
-          } else {
+          if (Meteor.userId()) {
             return $q.resolve();
+          } else if (Session.get('ephemeralUserId')) {
+            return $q.resolve();
+          } else {
+            return $q.reject('not-logged-in-not-ephemeral-user');
           }
         }
       }

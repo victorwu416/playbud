@@ -11,7 +11,7 @@ function SkillCtrl($reactive, $scope, $stateParams, SkillsTransform) {
       return _instance.section;
     },
     skill() {
-      return SkillsTransform.skillWithState(Skills, $stateParams.skillId, SkillAnswers);
+      return SkillsTransform.skillWithDisplayFields(Skills, $stateParams.skillId, SkillAnswers);
     },
     selectedAnswerOptionValue() {
       return _instance.selectedAnswerOptionValue;

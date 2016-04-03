@@ -16,7 +16,7 @@
         <img src="https://dl.dropboxusercontent.com/u/6677157/splash.jpg">
         <h2>{{skill.shortDescription}}</h2>
         <p><skill-state state="skill.state"></skill-state></p>
-        <p>Last evaluated Mar 24, 2016</p>
+        <p ng-show="skill.newestAnswerDateFormatted">{{skill.newestAnswerDateFormatted}}</p>
       </a>
 
       <div class="item item-divider divider-skills">DONE</div>
@@ -27,7 +27,8 @@
         >
         <img src="https://dl.dropboxusercontent.com/u/6677157/splash.jpg">
         <h2>{{skill.shortDescription}}</h2>
-        <p><skill-state state="skill.state"></skill-state> Mar 24, 2016</p>
+        <p><skill-state state="skill.state"></skill-state></p>
+        <p ng-show="skill.newestAnswerDateFormatted">{{skill.newestAnswerDateFormatted}}</p>
       </a>
     </div>
     <ion-infinite-scroll

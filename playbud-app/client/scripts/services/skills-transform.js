@@ -14,7 +14,7 @@ function SkillsTransform() {
         (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'easily'}).count() < 2) &&
         (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'skip'}).count() < 1)
       ) {
-        return _skillWithState(skill, skillAnswersCollection);
+        return _skillWithDisplayFields(skill, skillAnswersCollection);
       }
     });
     if (nextSkills.length > 3) {
@@ -29,20 +29,24 @@ function SkillsTransform() {
     };
     var doneSkills = _.filter(skillsCollection.find({}, options).fetch(), function (skill) {
       if (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'easily'}).count() >= 2) {
-        return _skillWithState(skill, skillAnswersCollection);
+        return _skillWithDisplayFields(skill, skillAnswersCollection);
       }
       if (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'skip'}).count() >= 1) {
-        return _skillWithState(skill, skillAnswersCollection);
+        return _skillWithDisplayFields(skill, skillAnswersCollection);
       }
     });
     return doneSkills;
   }
 
-  _instance.skillWithState = function (skillsCollection, skillId, skillAnswersCollection) {
-    return _skillWithState(skillsCollection.findOne(new Meteor.Collection.ObjectID(skillId)), skillAnswersCollection);
+  _instance.skillWithDisplayFields = function (skillsCollection, skillId, skillAnswersCollection) {
+    return _skillWithDisplayFields(skillsCollection.findOne(new Meteor.Collection.ObjectID(skillId)), skillAnswersCollection);
   }
 
-  function _skillWithState (skill, skillAnswersCollection) {
+  function _skillWithDisplayFields(skill, skillAnswersCollection) {
+    return _skillWithNewestAnswerDateFormatted(_skillWithState(skill, skillAnswersCollection), skillAnswersCollection);
+  }
+
+  function _skillWithState(skill, skillAnswersCollection) {
     if (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'easily'}).count() >= 2) {
       skill.state = 'passed';
     } else if (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'skip'}).count() >= 1) {
@@ -55,6 +59,18 @@ function SkillsTransform() {
       skill.state = 'tried';
     } else {
       skill.state = 'not-started';
+    }
+    return skill;
+  }
+
+  function _skillWithNewestAnswerDateFormatted(skill, skillAnswersCollection) {
+    var selector = {skillId: skill._id.valueOf()};
+    var options = {sort: {created: -1}};
+    var sortedAnswers = skillAnswersCollection.find(selector, options).fetch();
+    if (sortedAnswers.length > 0) {
+      skill.newestAnswerDateFormatted = moment(sortedAnswers[0].created).format('MMM D');
+    } else {
+      skill.newestAnswerDateFormatted = '';
     }
     return skill;
   }

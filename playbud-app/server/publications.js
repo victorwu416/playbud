@@ -1,5 +1,4 @@
-Meteor.publishComposite('skills', function (bottomMonths, ephemeralUserId) {
-  check(bottomMonths, Match.Integer);
+Meteor.publishComposite('skills', function (ephemeralUserId) {
   check(ephemeralUserId, String);
   return {
     find: function() {
@@ -8,16 +7,12 @@ Meteor.publishComposite('skills', function (bottomMonths, ephemeralUserId) {
       if (!user) {
         throw new Meteor.Error('publishComposite-skills', 'Error finding a user when publishing skills');
       }
-
       var childMonths = moment().diff(user.profile.childBirthdate, 'months');
       var childMonthsInitial = moment(user.profile.created).diff(user.profile.childBirthdate, 'months');
-
-      console.log(childMonths);
-      console.log(childMonthsInitial);
-
       var selector = {months: {$gte: childMonthsInitial, $lte: childMonths+1}};
       var options = {
-        sort: {months: -1, shortDescription: 1}
+        // sort: {months: -1, shortDescription: 1}. TODO: Sort by months of age first
+        sort: {shortDescription: 1}
       };
       return Skills.find(selector, options);
     },
