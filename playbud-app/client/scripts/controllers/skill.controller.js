@@ -47,6 +47,7 @@ function SkillCtrl($reactive, $scope, $stateParams, SkillsTransform) {
         }
       }
     );
+    _instance.selectedAnswerOptionValue = '';
     _instance.section = 'evaluate-finish';
   };
 

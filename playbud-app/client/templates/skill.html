@@ -7,6 +7,7 @@
       <div class="item item-body">
         <h2>{{skill.skill.shortDescription}}</h2>
         <p><skill-long-description long-description="skill.skill.longDescription" child-name="skill.childName"></skill-long-description></p>
+        <p>Suggested at {{skill.skill.months}} months</p>
         <p>
           <skill-state state="skill.skill.state"></skill-state>
           <span ng-show="skill.skill.newestAnswerDateFormatted">{{skill.skill.newestAnswerDateFormatted}}</span>
