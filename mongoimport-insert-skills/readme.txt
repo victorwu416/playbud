@@ -13,3 +13,8 @@ mongo mongodb://127.0.0.1:3001/meteor
 
 4) Use the mongoimport tool to import the csv file into MongoDB
 mongoimport --host=127.0.0.1 --port=3001 --db=meteor --collection=skills --type=csv --file=03months.csv --headerline
+
+5) mongoimport only imports fields as strings. Use the following commands inside the MongoDB shell to replace boolean fields accordingly:
+db.skills.update({requiresToyString: 'TRUE'}, {$set: {requiresToy: true}}, {multi:true})
+db.skills.update({requiresToyString: 'FALSE'}, {$set: {requiresToy: false}}, {multi:true})
+db.skills.update({}, {$unset: {requiresToyString: ''}}, {multi:true})
