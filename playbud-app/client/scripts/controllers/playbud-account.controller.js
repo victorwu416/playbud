@@ -10,41 +10,41 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
     user() {
       return Meteor.user();
     },
-    email() {
-      return Meteor.user() ? Meteor.user().emails[0].address : '';
-    },
-    childName() {
-      return Meteor.user() ? Meteor.user().profile.childName : '';
-    },
     childMonths() {
       return Meteor.user() ? moment().diff(Meteor.user().profile.childBirthdate, 'months') : -1;
     },
     haveToy() {
-      return _instance.haveToy;
+      return Meteor.user() ? Meteor.user().profile.haveToy : false;
     },
     loggedOutSection() {
       return _instance.loggedOutSection;
     },
-    showSignUpValidationMessage() {
-      return _instance.showSignUpValidationMessage;
-    },
     signUpValidationMessage() {
       return _instance.signUpValidationMessage;
     },
-    showLogInValidationMessage() {
-      return _instance.showLogInValidationMessage;
+    logInValidationMessage() {
+      return _instance.logInValidationMessage;
+    },
+    loggingIn() {
+      return _instance.loggingIn;
+    },
+    loggingOut() {
+      return _instance.loggingOut;
+    },
+    signingUp() {
+      return _instance.signingUp;
     }
   });
 
-  _instance.haveToy = Meteor.user() ? Meteor.user().profile.haveToy : false;
   _instance.loggedOutSection = $stateParams.loggedOutSection;
-  _instance.showSignUpValidationMessage = false;
-  _instance.showLogInValidationMessage = false;
+  _instance.logInValidationMessage = _instance.signUpValidationMessage = '';
+  _instance.loggingIn = _instance.loggingOut = _instance.signingUp = false;
 
   _instance.createPlaybudAccountAndLogIn = function () {
     if (!_clientValidateSignUp()) {
       return;
     }
+    _instance.signingUp = true;
     Meteor.call(
       'createPlaybudAccount',
       _instance.email,
@@ -52,11 +52,10 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
       _instance.childName,
       _instance.childBirthdate,
       function(error, result) {
+        _instance.signingUp = false;        
         if (error) {
           _instance.signUpValidationMessage = 'Email already exists. Cancel and log in';
-          _instance.showSignUpValidationMessage = true;
         } else {
-          _instance.showSignUpValidationMessage = false;
           _instance.logIn();
         }
       }
@@ -65,31 +64,39 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
 
   _instance.logIn = function () {
     if (!_instance.email && !_instance.password) {
-      _instance.showLogInValidationMessage = true;
+      _instance.logInValidationMessage = 'Invalid email and/or password';
       return;
     }
+    _instance.loggingIn = true;
     Meteor.loginWithPassword(_instance.email, _instance.password, function (error) {
+      _instance.loggingIn = false;
       if (error) {
-        _instance.showLogInValidationMessage = true;
+        _instance.logInValidationMessage = 'Invalid email and/or password';
+      } else {
+        _instance.logInValidationMessage = _instance.signUpValidationMessage = '';
+        _instance.email = _instance.password = _instance.childName = _instance.childBirthdate = null;
       }
     });
   }
 
   _instance.logOut = function () {
+    _instance.loggingOut = true;
     Meteor.logout(function (error) {
+      _instance.loggingOut = false;
       if (error) {
         throw new Meteor.Error('meteor-logout', 'Error logging out');
       } else {
-        _instance.loggedOutSection = 'signUpLogIn';
+        _instance.logInValidationMessage = _instance.signUpValidationMessage = '';
         _instance.email = _instance.password = _instance.childName = _instance.childBirthdate = null;
+        _instance.loggedOutSection = 'signUpLogIn';
       }
     });
   };
 
   _instance.cancel = function () {
-    _instance.showSignUpValidationMessage = _instance.showLogInValidationMessage = false;
+    _instance.logInValidationMessage = _instance.signUpValidationMessage = '';
+    _instance.email = _instance.password = _instance.childName = _instance.childBirthdate = null;
     _instance.loggedOutSection='signUpLogIn';
-    _instance.password = null;
   }
 
   _instance.updateHaveToy = function () {
@@ -118,7 +125,6 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
       _instance.signUpValidationMessage = 'Playbud only works with children 3 to 18 months';
     }
     if (_instance.signUpValidationMessage) {
-      _instance.showSignUpValidationMessage = true;
       return false;
     }
     return true;

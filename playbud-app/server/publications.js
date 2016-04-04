@@ -7,12 +7,12 @@ Meteor.publishComposite('skills', function (ephemeralUserId) {
       if (!user) {
         throw new Meteor.Error('publishComposite-skills', 'Error finding a user when publishing skills');
       }
-      var childMonths = moment().diff(user.profile.childBirthdate, 'months');
+      var childMonthsNow = moment().diff(user.profile.childBirthdate, 'months');
       var childMonthsInitial = moment(user.profile.created).diff(user.profile.childBirthdate, 'months');
       var selector = {
         months: {
-          $gte: childMonthsInitial,
-          $lte: childMonths+1
+          $gte: 0,//childMonthsInitial,
+          $lte: childMonthsNow+1
         }
       };
       var options = {

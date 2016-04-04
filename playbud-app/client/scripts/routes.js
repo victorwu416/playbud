@@ -7,16 +7,16 @@ function config($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('first', {
       url: '/first',
-        templateUrl: 'client/templates/first.html',
-        controller: 'FirstCtrl as first'
+      templateUrl: 'client/templates/first.html',
+      controller: 'FirstCtrl as first'
     })
     .state('help', {
       url: '/help',
-        templateUrl: 'client/templates/help.html'
+      templateUrl: 'client/templates/help.html'
     })
     .state('toy', {
       url: '/toy',
-        templateUrl: 'client/templates/toy.html'
+      templateUrl: 'client/templates/toy.html'
     })
     .state('tab', {
       url: '/tab',

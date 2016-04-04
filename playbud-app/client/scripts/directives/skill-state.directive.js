@@ -5,6 +5,6 @@ angular.module('Playbud').directive('skillState', function () {
     scope: {
       state: '=state'
     },
-    template: '<span class=directive-{{state}}></span>'
+    template: '<span>{{state}}</span>'
   };
 });

@@ -1,20 +1,10 @@
 <ion-view title="Skill">
   <ion-content class="skill">
-
     <img class="full-image" src="https://dl.dropboxusercontent.com/u/6677157/skill.jpg">
 
     <div class="card" ng-show="skill.section==='skill'">
       <div class="item item-body">
-        <h2>{{skill.skill.shortDescription}}</h2>
-        <p><skill-long-description long-description="skill.skill.longDescription" child-name="skill.childName"></skill-long-description></p>
-        <p>
-          <span>Suggested {{skill.skill.months}} months</span>
-          <span ng-show="skill.skill.delayed" class="msg-skill-delayed">DELAYED</span>
-        </p>
-        <p>
-          <skill-state state="skill.skill.state"></skill-state>
-          <span ng-show="skill.skill.newestAnswerDateFormatted">{{skill.skill.newestAnswerDateFormatted}}</span>
-        </p>
+        <skill-display skill="skill.skill" display-long-description="true" child-name="skill.childName"></skill-display>
         <div ng-show="skill.skill.state!=='passed' && skill.skill.state!=='skipped'">
           <button ng-click="skill.section='evaluate'" class="button button-block button-primary-dark">Evaluate</button>
           <p ng-click="skill.section='skip'" class="link-skip"><span class="link-secondary">Skip</span></p>
@@ -66,6 +56,5 @@
         <button ng-click="skill.section='skill'" class="button button-block button-primary-dark">Done</button>
       </div>
     </div>
-
   </ion-content>
 </ion-view>

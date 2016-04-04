@@ -12,7 +12,7 @@ function FirstCtrl($reactive, $scope, $state) {
       'playbud' + Math.random() + '@playbud.me',
       Math.random() + '',
       'Your Child',
-      moment().subtract(4, 'months').toDate(),
+      moment().subtract(3, 'months').toDate(),
       function(error, ephemeralUserId) {
         if (error) {
           throw new Meteor.Error('method-call-createPlaybudAccount', 'Error creating ephemeral account');

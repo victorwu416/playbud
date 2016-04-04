@@ -34,19 +34,24 @@ function PlayCtrl($reactive, $scope, SkillsTransform) {
     },
     moreSkillsAvailable() {
       return _instance.moreSkillsAvailable;
+    },
+    skillsLoading() {
+      return _instance.skillsLoading;
     }
   });
 
   _instance.nextSkills = [];
   _instance.doneSkills = [];
 
-  _instance.moreSkillsAvailable = true;
+  _instance.moreSkillsAvailable = _instance.skillsLoading = true;
   _instance.lastSkillId = '';
 
-  _instance.subscribe('skills', () => [Session.get('ephemeralUserId')]);
+  _instance.subscribe('skills', () => [Session.get('ephemeralUserId')], function () {
+    _instance.skillsLoading = false;
+  });
 
   _instance.getMoreSkills = function() {
-    _instance.subscribe('skills', () => [Session.get('ephemeralUserId')], function() {
+    _instance.subscribe('skills', () => [Session.get('ephemeralUserId')], function () {
       _updateSkills();
       _updateMoreSkillsAvailable();
       $scope.$broadcast('scroll.infiniteScrollComplete');
