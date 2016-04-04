@@ -1,18 +1,18 @@
 .directive-not-started:after {
   content: 'NOT STARTED';
-  color: black;
+  color: darkslategrey;
   font-weight: bold;
 }
 
 .directive-tried:after {
   content: 'TRIED';
-  color: orangered;
+  color: royalblue;
   font-weight: bold;
 }
 
 .directive-getting-there:after {
   content: 'GETTING THERE';
-  color: orangered;
+  color: royalblue;
   font-weight: bold;
 }
 

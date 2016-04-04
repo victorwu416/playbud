@@ -15,7 +15,10 @@
         >
         <img src="https://dl.dropboxusercontent.com/u/6677157/splash.jpg">
         <h2>{{skill.shortDescription}}</h2>
-        <p>Suggested at {{skill.months}} months</p>
+        <p>
+          <span>Suggested {{skill.months}} months</span>
+          <span ng-show="skill.delayed" class="msg-skill-delayed">DELAYED</span>
+        </p>
         <p>
           <skill-state state="skill.state"></skill-state>
           <span ng-show="skill.newestAnswerDateFormatted">{{skill.newestAnswerDateFormatted}}</span>
@@ -30,7 +33,9 @@
         >
         <img src="https://dl.dropboxusercontent.com/u/6677157/splash.jpg">
         <h2>{{skill.shortDescription}}</h2>
-        <p>Suggested at {{skill.months}} months</p>
+        <p>
+          <span>Suggested {{skill.months}} months</span>          
+        </p>
         <p>
           <skill-state state="skill.state"></skill-state>
           <span ng-show="skill.newestAnswerDateFormatted">{{skill.newestAnswerDateFormatted}}</span>

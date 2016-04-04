@@ -39,11 +39,17 @@ function SkillsTransform() {
   }
 
   _instance.skillWithDisplayFields = function (skillsCollection, skillId, skillAnswersCollection) {
-    return _skillWithDisplayFields(skillsCollection.findOne(new Meteor.Collection.ObjectID(skillId)), skillAnswersCollection);
+    return _skillWithDisplayFields(
+      skillsCollection.findOne(new Meteor.Collection.ObjectID(skillId)),
+      skillAnswersCollection
+    );
   }
 
   function _skillWithDisplayFields(skill, skillAnswersCollection) {
-    return _skillWithNewestAnswerDateFormatted(_skillWithState(skill, skillAnswersCollection), skillAnswersCollection);
+    var skill = _skillWithState(skill, skillAnswersCollection);
+    skill = _skillWithNewestAnswerDateFormatted(skill, skillAnswersCollection);
+    skill = _skillWithDelayed(skill);
+    return skill;
   }
 
   function _skillWithState(skill, skillAnswersCollection) {
@@ -71,6 +77,20 @@ function SkillsTransform() {
       skill.newestAnswerDateFormatted = moment(sortedAnswers[0].created).format('MMM D');
     } else {
       skill.newestAnswerDateFormatted = '';
+    }
+    return skill;
+  }
+
+  function _skillWithDelayed(skill) {
+    skill.delayed = false;
+    if (Meteor.user()) {
+      var childMonths = moment().diff(Meteor.user().profile.childBirthdate, 'months');
+      var monthsDiff = childMonths - skill.months;
+      if (childMonths < 12 && monthsDiff >= 1) {
+        skill.delayed = true;
+      } else if (childMonths >= 12 && monthsDiff >= 2) {
+        skill.delayed = true;
+      }
     }
     return skill;
   }

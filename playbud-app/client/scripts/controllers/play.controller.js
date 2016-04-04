@@ -25,11 +25,11 @@ function PlayCtrl($reactive, $scope, SkillsTransform) {
       }
     },
     nextSkills() {
-      updateSkills();
+      _updateSkills();
       return _instance.nextSkills;
     },
     doneSkills() {
-      updateSkills();
+      _updateSkills();
       return _instance.doneSkills;
     },
     moreSkillsAvailable() {
@@ -47,18 +47,18 @@ function PlayCtrl($reactive, $scope, SkillsTransform) {
 
   _instance.getMoreSkills = function() {
     _instance.subscribe('skills', () => [Session.get('ephemeralUserId')], function() {
-      updateSkills();
-      updateMoreSkillsAvailable();
+      _updateSkills();
+      _updateMoreSkillsAvailable();
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });
   };
 
-  function updateSkills() {
+  function _updateSkills() {
     _instance.nextSkills = SkillsTransform.nextSkills(Skills, SkillAnswers);
     _instance.doneSkills = SkillsTransform.doneSkills(Skills, SkillAnswers);
   }
 
-  function updateMoreSkillsAvailable() {
+  function _updateMoreSkillsAvailable() {
     if (_instance.doneSkills.length > 0) {
       var lastSkillId = _instance.doneSkills[_instance.doneSkills.length-1]._id.valueOf();
       if (_instance.lastSkillId === lastSkillId) {

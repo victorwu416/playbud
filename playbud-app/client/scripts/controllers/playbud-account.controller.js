@@ -42,7 +42,7 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
   _instance.showLogInValidationMessage = false;
 
   _instance.createPlaybudAccountAndLogIn = function () {
-    if (!clientValidateSignUp()) {
+    if (!_clientValidateSignUp()) {
       return;
     }
     Meteor.call(
@@ -104,7 +104,7 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
     );
   }
 
-  function clientValidateSignUp() {
+  function _clientValidateSignUp() {
     _instance.signUpValidationMessage = '';
     if (!_instance.email) {
       _instance.signUpValidationMessage = 'Enter valid email';
@@ -114,7 +114,7 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
       _instance.signUpValidationMessage = 'Enter child\'s name';
     } else if (!_instance.childBirthdate) {
       _instance.signUpValidationMessage = 'Enter valid child\'s birthdate';
-    } else if (!validateBirthDate()) {
+    } else if (!_validateBirthDate()) {
       _instance.signUpValidationMessage = 'Playbud only works with children 3 to 18 months';
     }
     if (_instance.signUpValidationMessage) {
@@ -124,7 +124,7 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
     return true;
   }
 
-  function validateBirthDate() {
+  function _validateBirthDate() {
     var childMonths = moment().diff(_instance.childBirthdate, 'months');
     return (childMonths >=3) && (childMonths <= 18) ? true : false;
   }
