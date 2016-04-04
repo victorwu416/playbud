@@ -7,8 +7,8 @@ angular.module('Playbud').directive('skillLongDescription', function () {
       childName: '=childName'
     },
     template: '<span>{{formattedDescription}}</span>',
-    controller: function ($scope) {
-      $scope.formattedDescription = $scope.longDescription.replace('{0}', $scope.childName);
+    controller: function ($scope) {      
+      $scope.formattedDescription = $scope.longDescription.split('{0}').join($scope.childName);
     }
   };
 });

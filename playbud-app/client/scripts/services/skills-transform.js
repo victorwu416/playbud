@@ -6,10 +6,7 @@ function SkillsTransform() {
   var _instance = this;
 
   _instance.nextSkills = function (skillsCollection, skillAnswersCollection) {
-    var options = {
-      sort: {months: 1, shortDescription: 1},
-    };
-    var nextSkills = _.filter(skillsCollection.find({}, options).fetch(), function (skill) {
+    var nextSkills = _.filter(skillsCollection.find(_skillsSelector(), _skillsOptions()).fetch(), function (skill) {
       if (
         (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'easily'}).count() < 2) &&
         (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'skip'}).count() < 1)
@@ -17,17 +14,14 @@ function SkillsTransform() {
         return _skillWithDisplayFields(skill, skillAnswersCollection);
       }
     });
-    if (nextSkills.length > 3) {
-      nextSkills = nextSkills.slice(0, 3);
+    if (nextSkills.length > 5) {
+      nextSkills = nextSkills.slice(0, 5);
     }
     return nextSkills;
   }
 
   _instance.doneSkills = function (skillsCollection, skillAnswersCollection) {
-    var options = {
-      sort: {months: -1, shortDescription: 1},
-    };
-    var doneSkills = _.filter(skillsCollection.find({}, options).fetch(), function (skill) {
+    var doneSkills = _.filter(skillsCollection.find(_skillsSelector(), _skillsOptions()).fetch(), function (skill) {
       if (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'easily'}).count() >= 2) {
         return _skillWithDisplayFields(skill, skillAnswersCollection);
       }
@@ -43,6 +37,28 @@ function SkillsTransform() {
       skillsCollection.findOne(new Meteor.Collection.ObjectID(skillId)),
       skillAnswersCollection
     );
+  }
+
+  function _skillsSelector() {
+    var selector = {};
+    if (
+      (!Meteor.user())
+      || (Meteor.user() && !Meteor.user().profile.haveToy)
+    ) {
+      selector.requiresToy = false;
+    }
+    return selector;
+  }
+
+  function _skillsOptions() {
+    var options = {
+      sort: {
+        months: 1,
+        longDescription: 1,
+        shortDescription: 1
+      }
+    };
+    return options;
   }
 
   function _skillWithDisplayFields(skill, skillAnswersCollection) {
@@ -70,8 +86,14 @@ function SkillsTransform() {
   }
 
   function _skillWithNewestAnswerDateFormatted(skill, skillAnswersCollection) {
-    var selector = {skillId: skill._id.valueOf()};
-    var options = {sort: {created: -1}};
+    var selector = {
+      skillId: skill._id.valueOf()
+    };
+    var options = {
+      sort: {
+        created: -1
+      }
+    };
     var sortedAnswers = skillAnswersCollection.find(selector, options).fetch();
     if (sortedAnswers.length > 0) {
       skill.newestAnswerDateFormatted = moment(sortedAnswers[0].created).format('MMM D');

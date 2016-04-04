@@ -17,11 +17,11 @@ function PlayCtrl($reactive, $scope, SkillsTransform) {
         return Meteor.user().profile.childName;
       }
     },
-    atChildMonthsMonths() {
+    childMonths() {
       if (!Meteor.user()) {
         return '';
       } else {
-        return 'at ' + moment().diff(Meteor.user().profile.childBirthdate, 'months') + ' months';
+        return moment().diff(Meteor.user().profile.childBirthdate, 'months') + '';
       }
     },
     nextSkills() {
