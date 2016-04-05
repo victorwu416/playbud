@@ -15,7 +15,7 @@
     <div class="card" ng-show="skill.section==='skip'">
       <div class="item item-body">
         <h2>Skip skill?</h2>
-        <p>If you are certain this skill doesn't apply to your child anymore, then skip it. Can't be reversed.</p>
+        <p>If you are certain this skill doesn't apply to {{skill.childName}} anymore, then skip it. Can't be reversed.</p>
         <div class="row">
           <div class="col"><button ng-click="skill.section='skill'" class="button button-block button-secondary-light">Cancel</button></div>
           <div class="col"><button ng-click="skill.skipSkill()" class="button button-block button-secondary-dark">Skip</button></div>
@@ -34,7 +34,7 @@
     <div class="card" ng-show="skill.section==='evaluate'">
       <div class="item item-body">
         <h2>Evaluate</h2>
-        <p>Last time you checked, your child is able to do this skill:</p>
+        <p>Last time you checked, {{skill.childName}} is able to do this skill:</p>
         <ion-radio
           ng-repeat="answerOption in skill.answerOptions"
           ng-value="answerOption.value"
@@ -44,7 +44,7 @@
         </ion-radio>
         <div class="row">
           <div class="col"><button ng-click="skill.section='skill'" class="button button-block button-primary-light">Cancel</button></div>
-          <div class="col"><button ng-click="skill.submitAnswer()" class="button button-block button-primary-dark">Submit</button></div>
+          <div class="col"><button ng-click="skill.submitAnswer()" ng-disabled="!skill.selectedAnswerOptionValue" class="button button-block button-primary-dark">Submit</button></div>
         </div>
       </div>
     </div>

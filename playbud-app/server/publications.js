@@ -11,7 +11,7 @@ Meteor.publishComposite('skills', function (ephemeralUserId) {
       var childMonthsInitial = moment(user.profile.created).diff(user.profile.childBirthdate, 'months');
       var selector = {
         months: {
-          $gte: 0,//childMonthsInitial,
+          $gte: childMonthsInitial,
           $lte: childMonthsNow+1
         }
       };

@@ -2,7 +2,7 @@ angular
   .module('Playbud')
   .controller('PlayCtrl', PlayCtrl);
 
-function PlayCtrl($reactive, $scope, SkillsTransform) {
+function PlayCtrl($location, $reactive, $rootScope, $scope, SkillsTransform) {
   var _instance = this;
   $reactive(_instance).attach($scope);
 
@@ -11,18 +11,10 @@ function PlayCtrl($reactive, $scope, SkillsTransform) {
       return Meteor.user();
     },
     childName() {
-      if (!Meteor.user()) {
-        return 'Your Child';
-      } else {
-        return Meteor.user().profile.childName;
-      }
+      return Meteor.user() ? Meteor.user().profile.childName : 'Your Child';
     },
     childMonths() {
-      if (!Meteor.user()) {
-        return '';
-      } else {
-        return moment().diff(Meteor.user().profile.childBirthdate, 'months') + '';
-      }
+      return Meteor.user() ? moment().diff(Meteor.user().profile.childBirthdate, 'months') + '' : '';
     },
     nextSkills() {
       _updateSkills();
@@ -43,11 +35,14 @@ function PlayCtrl($reactive, $scope, SkillsTransform) {
   _instance.nextSkills = [];
   _instance.doneSkills = [];
 
-  _instance.moreSkillsAvailable = _instance.skillsLoading = true;
+  _instance.moreSkillsAvailable = true;
   _instance.lastSkillId = '';
 
-  _instance.subscribe('skills', () => [Session.get('ephemeralUserId')], function () {
-    _instance.skillsLoading = false;
+  $rootScope.$on('$locationChangeStart', function(event, next, current) {
+    _instance.skillsLoading = true;
+    _instance.subscribe('skills', () => [Session.get('ephemeralUserId')], function () {
+      _instance.skillsLoading = false;
+    });
   });
 
   _instance.getMoreSkills = function() {
