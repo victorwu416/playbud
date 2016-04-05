@@ -2,21 +2,33 @@ angular
   .module('Playbud')
   .controller('PlayCtrl', PlayCtrl);
 
-function PlayCtrl($reactive, $scope, SkillsTransform) {
+function PlayCtrl($location, $reactive, $rootScope, $scope, SkillsTransform) {
   var _instance = this;
   $reactive(_instance).attach($scope);
 
   _instance.helpers({
+    user() {
+      return Meteor.user();
+    },
+    childName() {
+      return Meteor.user() ? Meteor.user().profile.childName : 'Your Child';
+    },
+    childMonths() {
+      return Meteor.user() ? moment().diff(Meteor.user().profile.childBirthdate, 'months') + '' : '';
+    },
     nextSkills() {
-      updateSkills();
+      _updateSkills();
       return _instance.nextSkills;
     },
     doneSkills() {
-      updateSkills();
+      _updateSkills();
       return _instance.doneSkills;
     },
     moreSkillsAvailable() {
       return _instance.moreSkillsAvailable;
+    },
+    skillsLoading() {
+      return _instance.skillsLoading;
     }
   });
 
@@ -25,25 +37,28 @@ function PlayCtrl($reactive, $scope, SkillsTransform) {
 
   _instance.moreSkillsAvailable = true;
   _instance.lastSkillId = '';
-  _instance.bottomMonths = 5;
 
-  _instance.subscribe('skills', () => [_instance.bottomMonths]);
+  $rootScope.$on('$locationChangeStart', function(event, next, current) {
+    _instance.skillsLoading = true;
+    _instance.subscribe('skills', () => [Session.get('ephemeralUserId')], function () {
+      _instance.skillsLoading = false;
+    });
+  });
 
   _instance.getMoreSkills = function() {
-    _instance.bottomMonths -= 1;
-    _instance.subscribe('skills', () => [_instance.bottomMonths], function() {
-      updateSkills();
-      updateMoreSkillsAvailable();
+    _instance.subscribe('skills', () => [Session.get('ephemeralUserId')], function () {
+      _updateSkills();
+      _updateMoreSkillsAvailable();
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });
   };
 
-  function updateSkills() {
+  function _updateSkills() {
     _instance.nextSkills = SkillsTransform.nextSkills(Skills, SkillAnswers);
     _instance.doneSkills = SkillsTransform.doneSkills(Skills, SkillAnswers);
   }
 
-  function updateMoreSkillsAvailable() {
+  function _updateMoreSkillsAvailable() {
     if (_instance.doneSkills.length > 0) {
       var lastSkillId = _instance.doneSkills[_instance.doneSkills.length-1]._id.valueOf();
       if (_instance.lastSkillId === lastSkillId) {

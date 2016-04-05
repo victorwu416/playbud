@@ -1,20 +1,22 @@
 angular
   .module('Playbud')
-  .config(config);
+  .config(config)
+  .run(run);
 
 function config($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('first', {
       url: '/first',
-        templateUrl: 'client/templates/first.html'
+      templateUrl: 'client/templates/first.html',
+      controller: 'FirstCtrl as first'
     })
     .state('help', {
       url: '/help',
-        templateUrl: 'client/templates/help.html'
+      templateUrl: 'client/templates/help.html'
     })
     .state('toy', {
       url: '/toy',
-        templateUrl: 'client/templates/toy.html'
+      templateUrl: 'client/templates/toy.html'
     })
     .state('tab', {
       url: '/tab',
@@ -27,6 +29,17 @@ function config($stateProvider, $urlRouterProvider) {
         'tab-play': {
           templateUrl: 'client/templates/play.html',
           controller: 'PlayCtrl as play'
+        }
+      },
+      resolve: {
+        currentUser: ($q) => {
+          if (Meteor.userId()) {
+            return $q.resolve();
+          } else if (Session.get('ephemeralUserId')) {
+            return $q.resolve();
+          } else {
+            return $q.reject('not-logged-in-not-ephemeral-user');
+          }
         }
       }
     })
@@ -49,11 +62,14 @@ function config($stateProvider, $urlRouterProvider) {
       }
     });
 
-  $urlRouterProvider.otherwise(function ($injector, $location) {
-    if (Meteor.user()) {
-      return 'tab/play';
-    } else {
-      return 'first';
+  $urlRouterProvider.otherwise('tab/play');
+}
+
+function run($rootScope, $state) {
+  $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
+    if (error === 'not-logged-in-not-ephemeral-user') {
+      return $state.go('first');
     }
   });
+  Session.set('ephemeralUserId', '');
 }

@@ -11,10 +11,13 @@ function SkillCtrl($reactive, $scope, $stateParams, SkillsTransform) {
       return _instance.section;
     },
     skill() {
-      return SkillsTransform.skillWithState(Skills, $stateParams.skillId, SkillAnswers);
+      return SkillsTransform.skillWithDisplayFields(Skills, $stateParams.skillId, SkillAnswers);
     },
     selectedAnswerOptionValue() {
       return _instance.selectedAnswerOptionValue;
+    },
+    childName() {
+      return Meteor.user() ? Meteor.user().profile.childName : 'Your Child';
     }
   });
 
@@ -37,12 +40,14 @@ function SkillCtrl($reactive, $scope, $stateParams, SkillsTransform) {
       'submitAnswer',
       _instance.skill,
       _instance.selectedAnswerOptionValue,
+      Session.get('ephemeralUserId'),
       function(error, result) {
         if (error) {
           throw new Meteor.Error('method-call-submitAnswer', 'Error submitting answer');
         }
       }
     );
+    _instance.selectedAnswerOptionValue = '';
     _instance.section = 'evaluate-finish';
   };
 
@@ -51,6 +56,7 @@ function SkillCtrl($reactive, $scope, $stateParams, SkillsTransform) {
       'submitAnswer',
       _instance.skill,
       'skip',
+      Session.get('ephemeralUserId'),
       function(error, result) {
         if (error) {
           throw new Meteor.Error('method-call-submitAnswer', 'Error submitting answer, skip');

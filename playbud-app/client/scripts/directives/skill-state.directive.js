@@ -1,11 +1,10 @@
-var playbudApp = angular.module('Playbud');
-
-playbudApp.directive('skillState', function () {
+angular.module('Playbud').directive('skillState', function () {
   return {
+    restrict: 'E',
     replace: true,
     scope: {
-      state: '='
+      state: '=state'
     },
-    template: '<span class=directive-{{state}}></span>'
+    template: '<span>{{state}}</span>'
   };
 });

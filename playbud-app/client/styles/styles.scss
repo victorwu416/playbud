@@ -1,3 +1,8 @@
+// * {
+//   word-break: break-all !important;
+//   white-space: normal !important;
+// }
+
 .button-primary-dark {
   background-color: #29AB87;
   color: white;
@@ -34,8 +39,46 @@ a {
   text-decoration: none;
 }
 
+.spinner-loading {
+  text-align: center;
+}
+
+.tabs {
+  .icon {
+    color: #29AB87;
+  },
+  .tab-title {
+    color: #29AB87;
+  }
+}
+
+.play .divider-skills {
+  color: #29AB87;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  font-weight: bold;
+}
+
+.play .banner-ephemeral-account {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  text-align: center;
+}
+
+.play .msg-finished-skills {
+  overflow: initial;
+  text-overflow: initial;
+  white-space: initial;
+}
+
+.msg-skill-delayed {
+  color: orangered;
+  font-weight: bold;
+}
+
 .msg-validation {
-  color: brown;
+  color: orangered;
   font-weight: bold;
 }
 
