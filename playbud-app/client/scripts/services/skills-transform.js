@@ -21,7 +21,7 @@ function SkillsTransform() {
   }
 
   _instance.doneSkills = function (skillsCollection, skillAnswersCollection) {
-    var doneSkills = _.filter(skillsCollection.find(_skillsSelector(), _skillsOptions()).fetch(), function (skill) {
+    var doneSkills = _.filter(skillsCollection.find(_skillsSelector(), _skillsOptionsReverseSort()).fetch(), function (skill) {
       if (
         (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'easily'}).count() >= 2) ||
         (skillAnswersCollection.find({skillId: skill._id.valueOf(), value:'skip'}).count() >= 1)
@@ -54,6 +54,17 @@ function SkillsTransform() {
     var options = {
       sort: {
         months: 1,
+        longDescription: 1,
+        shortDescription: 1
+      }
+    };
+    return options;
+  }
+
+  function _skillsOptionsReverseSort() {
+    var options = {
+      sort: {
+        months: -1,
         longDescription: 1,
         shortDescription: 1
       }
