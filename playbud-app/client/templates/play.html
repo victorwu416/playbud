@@ -12,7 +12,7 @@
           href="#/tab/skills/{{skill._id.valueOf()}}"
           class="item item-thumbnail-left"
           >
-          <img src="/images/skills/skill-300x300.jpg">
+          <img src="{{skill.playImagePath}}">
           <skill-display skill="skill" display-long-description="false" child-name="''"></skill-display>
         </a>
         <div class="item msg-finished-skills" ng-show="play.nextSkills.length===0">
@@ -34,7 +34,7 @@
         href="#/tab/skills/{{skill._id.valueOf()}}"
         class="item item-thumbnail-left"
         >
-        <img src="/images/skills/skill-300x300.jpg">
+        <img src="{{skill.playImagePath}}">
         <skill-display skill="skill" display-long-description="false" child-name="''"></skill-display>
       </a>
     </div>
