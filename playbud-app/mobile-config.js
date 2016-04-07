@@ -1,7 +1,7 @@
 App.info({
   name: 'Playbud',
   description: 'An app to track your child\'s development using toy-based play',
-  version: '0.0.1'
+  version: '0.0.2'
 });
 
 App.icons({

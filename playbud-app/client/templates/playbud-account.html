@@ -29,7 +29,7 @@
 
     <div class="card" ng-show="!playbudAccount.user && playbudAccount.loggedOutSection==='signUp'">
       <div class="item item-body">
-        <div ng-show="!playbudAccount.signingUp">
+        <div ng-show="!playbudAccount.signingUp && !playbudAccount.loggingIn">
           <div class="list">
             <label class="item item-input item-stacked-label">
               <span class="input-label">Email</span>
