@@ -1,12 +1,20 @@
 <ion-view view-title="Play">
   <ion-content class="play">
     <div class="list">
-      <div class="item item-divider banner-ephemeral-account" ng-show="!play.user">
+      <div ng-show="!play.skillsLoading && !play.user" class="item item-divider banner-ephemeral-account">
         Results not saved during trial
       </div>
       <div class="item item-divider divider-skills">NEXT</div>
       <div ng-show="play.skillsLoading" class="spinner-loading"><ion-spinner></ion-spinner></div>
       <div ng-show="!play.skillsLoading">
+        <a
+          ng-repeat="skill in play.nextSkills"
+          href="#/tab/skills/{{skill._id.valueOf()}}"
+          class="item item-thumbnail-left"
+          >
+          <img src="{{skill.playImagePath}}">
+          <skill-display skill="skill" display-long-description="false" child-name="''"></skill-display>
+        </a>
         <div class="item msg-finished-skills" ng-show="play.nextSkills.length===0">
           <p>
             Congratulations! {{play.childName}} has completed all available age-appropriate skills at {{play.childMonths}} months.
@@ -18,23 +26,15 @@
             Sign up to access more skills and save your progress.
           </p>
         </div>
-        <a
-          ng-repeat="skill in play.nextSkills"
-          href="#/tab/skills/{{skill._id.valueOf()}}"
-          class="item item-thumbnail-left"
-          >
-          <img src="https://dl.dropboxusercontent.com/u/6677157/skill.jpg">
-          <skill-display skill="skill" display-long-description="false" child-name="''"></skill-display>
-        </a>
       </div>
-      
+
       <div class="item item-divider divider-skills">DONE</div>
       <a
         ng-repeat="skill in play.doneSkills"
         href="#/tab/skills/{{skill._id.valueOf()}}"
         class="item item-thumbnail-left"
         >
-        <img src="https://dl.dropboxusercontent.com/u/6677157/skill.jpg">
+        <img src="{{skill.playImagePath}}">
         <skill-display skill="skill" display-long-description="false" child-name="''"></skill-display>
       </a>
     </div>

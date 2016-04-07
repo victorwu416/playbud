@@ -38,18 +38,19 @@ function PlayCtrl($location, $reactive, $rootScope, $scope, SkillsTransform) {
   _instance.moreSkillsAvailable = true;
   _instance.lastSkillId = '';
 
+  _instance.getMoreSkills = getMoreSkills;
+  _instance.getMoreSkills();
   $rootScope.$on('$locationChangeStart', function(event, next, current) {
-    _instance.skillsLoading = true;
-    _instance.subscribe('skills', () => [Session.get('ephemeralUserId')], function () {
-      _instance.skillsLoading = false;
-    });
+    _instance.getMoreSkills();
   });
 
-  _instance.getMoreSkills = function() {
+  function getMoreSkills() {
+    _instance.skillsLoading = true;
     _instance.subscribe('skills', () => [Session.get('ephemeralUserId')], function () {
       _updateSkills();
       _updateMoreSkillsAvailable();
       $scope.$broadcast('scroll.infiniteScrollComplete');
+      _instance.skillsLoading = false;
     });
   };
 

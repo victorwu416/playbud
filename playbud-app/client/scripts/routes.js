@@ -21,7 +21,8 @@ function config($stateProvider, $urlRouterProvider) {
     .state('tab', {
       url: '/tab',
       abstract: true,
-      templateUrl: 'client/templates/tabs.html'
+      templateUrl: 'client/templates/tabs.html',
+      controller: 'TabsCtrl as tabs'
     })
     .state('tab.play', {
       url: '/play',
