@@ -24,7 +24,7 @@ angular.module('Playbud').directive('skillDisplay', function () {
     },
     template:
       '<div>\
-        <h2>{{skill.shortDescription}}</h2>\
+        <h2><span ng-show="{{skill.requiresToy}}"><i class="icon ion-cube"></i></span> {{skill.shortDescription}}</h2>\
         <p>\
           <span>{{formattedDescription}}</span>\
         </p>\

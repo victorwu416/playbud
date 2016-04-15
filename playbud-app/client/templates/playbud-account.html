@@ -8,10 +8,10 @@
           <h2>{{playbudAccount.user.profile.childName}}</h2>
           <p>{{playbudAccount.childMonths}} months</p>
           <ion-list>
-            <ion-checkbox ng-change="playbudAccount.updateHaveToy();" ng-model="playbudAccount.haveToy">I have the toy (Access all skills)</ion-checkbox>
+            <ion-checkbox ng-change="playbudAccount.updateHaveToy();" ng-model="playbudAccount.haveToy">I have the toy <i class="icon ion-cube"></i> (Access all skills)</ion-checkbox>
           </ion-list>
           <div ng-show="!playbudAccount.haveToy">
-            <a href="#/toy"><button class="button button-block button-primary-dark">Get Free Toy</button></a>
+            <a href="#/toy"><button class="button button-block button-primary-dark">Get Free Toy <i class="icon ion-cube"></i></button></a>
           </div>
           <button ng-click="playbudAccount.logOut();" class="button button-block button-primary-light">Log Out</button>
           <p class="link-help"><a href="#/help" class="link-secondary">Help</a></p>
