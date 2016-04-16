@@ -1,22 +1,22 @@
 months,shortDescription,longDescription,requiresToyString,playImagePath,skillImagePath
-3,"Swipe at shape, on back",One or two hands,TRUE,/images/skills/skill0301-480x480.jpg,/images/skills/skill0301-1200x480.jpg
-3,"Swipe at shape, on side",One or two hands,TRUE,/images/skills/skill0302-480x480.jpg,/images/skills/skill0302-1200x480.jpg
-3,"Swipe at shape, seated and supported",One or two hands,TRUE,/images/skills/skill0303-480x480.jpg,/images/skills/skill0303-1200x480.jpg
-3,"Hear cups and react, on back","Knocking cups, react in any way",TRUE,/images/skills/skill0304-480x480.jpg,/images/skills/skill0304-1200x480.jpg
-3,"Hear cups and react, on side","Knocking cups, react in any way",TRUE,/images/skills/skill0305-480x480.jpg,/images/skills/skill0305-1200x480.jpg
-3,"Hear cups and react, seated and supported","Knocking cups, react in any way",TRUE,/images/skills/skill0306-480x480.jpg,/images/skills/skill0306-1200x480.jpg
-3,"Hear cups and react, on tummy","Knocking cups, react in any way, such as slight head movement",TRUE,/images/skills/skill0307-480x480.jpg,/images/skills/skill0307-1200x480.jpg
-3,Hear and see tower topple and react,React in any way,TRUE,/images/skills/skill0308-480x480.jpg,/images/skills/skill0308-1200x480.jpg
-3,"Eye track moving shape, on back",Shape moves side to side,TRUE,/images/skills/skill0309-480x480.jpg,/images/skills/skill0309-1200x480.jpg
-3,"Eye track moving shape, on side",Shape moves side to side,TRUE,/images/skills/skill0310-480x480.jpg,/images/skills/skill0310-1200x480.jpg
-3,"Eye track moving shape, seated and supported",Shape moves side to side,TRUE,/images/skills/skill0311-480x480.jpg,/images/skills/skill0311-1200x480.jpg
-3,"Eye focus on shape, on back",Focus on one static shape,TRUE,/images/skills/skill0312-480x480.jpg,/images/skills/skill0312-1200x480.jpg
-3,"Eye focus on shape, on side",Focus on one static shape,TRUE,/images/skills/skill0313-480x480.jpg,/images/skills/skill0313-1200x480.jpg
-3,"Eye focus on shape, seated and supported",Focus on one static shape,TRUE,/images/skills/skill0314-480x480.jpg,/images/skills/skill0314-1200x480.jpg
-3,"Coo or laugh, when parent making noises",,FALSE,/images/skills/skill-300x300.jpg,/images/skills/skill-600x240.jpg
-3,Eye contact with parent for 3 seconds,,FALSE,/images/skills/skill-300x300.jpg,/images/skills/skill-600x240.jpg
-3,"Look at parent's eyes and mouth, when parent speaking",You are speaking to child,FALSE,/images/skills/skill-300x300.jpg,/images/skills/skill-600x240.jpg
-3,"Hold head up, held up in superman posture","Hold child look superman, tummy down, in air, child holds head up in line with body",FALSE,/images/skills/skill-300x300.jpg,/images/skills/skill-600x240.jpg
-3,Make sucking sounds,,FALSE,/images/skills/skill-300x300.jpg,/images/skills/skill-600x240.jpg
-3,Roll from side to back,,FALSE,/images/skills/skill-300x300.jpg,/images/skills/skill-600x240.jpg
-3,Look at hands,,FALSE,/images/skills/skill-300x300.jpg,/images/skills/skill-600x240.jpg
+3,"Swipe at shape, on back","{0} is on their back. Place a shape near one of {0}'s hands. {0} is able to swipe at the shape, without necessarily touching it.",TRUE,/images/skills/skill0301-480x480.jpg,/images/skills/skill0301-1200x480.jpg
+3,"Swipe at shape, on side","{0} is on their side. Place a shape near one of {0}'s hands. {0} is able to swipe at the shape, without necessarily touching it.",TRUE,/images/skills/skill0302-480x480.jpg,/images/skills/skill0302-1200x480.jpg
+3,"Swipe at shape, seated and supported","{0} is seated and supported (e.g. you holding them up). Place a shape near one of {0}'s hands. {0} is able to swipe at the shape, without necessarily touching it.",TRUE,/images/skills/skill0303-480x480.jpg,/images/skills/skill0303-1200x480.jpg
+3,"Hear cups and react, on back","{0} is on their back. Knock two cups together continuously, allowing {0} to see the motions and hear the sounds. {0} is able to react in anyway, such as moving their head or making sounds.",TRUE,/images/skills/skill0304-480x480.jpg,/images/skills/skill0304-1200x480.jpg
+3,"Hear cups and react, on side","{0} is on their side. Knock two cups together continuously, allowing {0} to see the motions and hear the sounds. {0} is able to react in anyway, such as moving their head or making sounds.",TRUE,/images/skills/skill0305-480x480.jpg,/images/skills/skill0305-1200x480.jpg
+3,"Hear cups and react, seated and supported","{0} is seated and supported (e.g. you holding them up). Knock two cups together continuously, allowing {0} to see the motions and hear the sounds. {0} is able to react in anyway, such as moving their head or making sounds.",TRUE,/images/skills/skill0306-480x480.jpg,/images/skills/skill0306-1200x480.jpg
+3,"Hear cups and react, on tummy","{0} is on their tummy. Knock two cups together continuously, allowing {0} to see the motions and hear the sounds. {0} is able to react in anyway, such as moving their head or making sounds.",TRUE,/images/skills/skill0307-480x480.jpg,/images/skills/skill0307-1200x480.jpg
+3,Hear and see tower knocked down and react,"Build a tower and knock it down, allowing {0} to see the motions and hear the sounds. {0} is able to react in anyway, such as moving their head or making sounds.",TRUE,/images/skills/skill0308-480x480.jpg,/images/skills/skill0308-1200x480.jpg
+3,"Eye track moving shape, on back",{0} is on their back. Move a shape slowly back and forth in front of {0}'s face. {0} is able to track the shape with their eyes.,TRUE,/images/skills/skill0309-480x480.jpg,/images/skills/skill0309-1200x480.jpg
+3,"Eye track moving shape, on side",{0} is on their side. Move a shape slowly back and forth in front of {0}'s face. {0} is able to track the shape with their eyes.,TRUE,/images/skills/skill0310-480x480.jpg,/images/skills/skill0310-1200x480.jpg
+3,"Eye track moving shape, seated and supported",{0} is seated and supported (e.g. you holding them up). Move a shape slowly back and forth in front of {0}'s face. {0} is able to track the shape with their eyes.,TRUE,/images/skills/skill0311-480x480.jpg,/images/skills/skill0311-1200x480.jpg
+3,"Eye focus on shape, on back",{0} is on their back. Hold a shape steady in front of {0}'s face. {0} is able to focus on the shape with their eyes.,TRUE,/images/skills/skill0312-480x480.jpg,/images/skills/skill0312-1200x480.jpg
+3,"Eye focus on shape, on side",{0} is on their side. Hold a shape steady in front of {0}'s face. {0} is able to focus on the shape with their eyes.,TRUE,/images/skills/skill0313-480x480.jpg,/images/skills/skill0313-1200x480.jpg
+3,"Eye focus on shape, seated and supported",{0} is seated and supported (e.g. you holding them up). Hold a shape steady in front of {0}'s face. {0} is able to focus on the shape with their eyes.,TRUE,/images/skills/skill0314-480x480.jpg,/images/skills/skill0314-1200x480.jpg
+3,"Coo or laugh, when parent making funny faces and noises",Make funny faces and noises in front of {0}. {0} is able to coo or laugh.,FALSE,/images/skills/pending-480x480.png,/images/skills/pending-1200x480.png
+3,Eye contact with parent for 3 seconds,Put your face in front of {0}'s face. {0} is able to establish eye contact with you for 3 seconds.,FALSE,/images/skills/pending-480x480.png,/images/skills/pending-1200x480.png
+3,"Look at parent's eyes and mouth, when parent speaking",Speak to {0} and in front of their face. {0} is able to look at your eyes and mouth.,FALSE,/images/skills/pending-480x480.png,/images/skills/pending-1200x480.png
+3,"Hold head up, supported in superman posture","Hold up {0} in the superman posture. {0} is able to hold up their head, in line with their body, for a few seconds.",FALSE,/images/skills/pending-480x480.png,/images/skills/pending-1200x480.png
+3,Make sucking sounds,{0} is able to making sucking sounds.,FALSE,/images/skills/pending-480x480.png,/images/skills/pending-1200x480.png
+3,Roll from side to back,{0} is able to roll from their side to their back.,FALSE,/images/skills/pending-480x480.png,/images/skills/pending-1200x480.png
+3,Look at hands,{0} is able to look at their hands.,FALSE,/images/skills/pending-480x480.png,/images/skills/pending-1200x480.png

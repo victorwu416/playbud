@@ -52,7 +52,7 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
       _instance.childName,
       _instance.childBirthdate,
       function(error, result) {
-        _instance.signingUp = false;        
+        _instance.signingUp = false;
         if (error) {
           _instance.signUpValidationMessage = 'Email already exists. Cancel and log in';
         } else {
@@ -122,7 +122,7 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
     } else if (!_instance.childBirthdate) {
       _instance.signUpValidationMessage = 'Enter valid child\'s birthdate';
     } else if (!_validateBirthDate()) {
-      _instance.signUpValidationMessage = 'Playbud only works with children 3 to 18 months';
+      _instance.signUpValidationMessage = 'Playbud only works with children 3 to 10 months';
     }
     if (_instance.signUpValidationMessage) {
       return false;
@@ -132,6 +132,6 @@ function PlaybudAccountCtrl($reactive, $scope, $stateParams) {
 
   function _validateBirthDate() {
     var childMonths = moment().diff(_instance.childBirthdate, 'months');
-    return (childMonths >=3) && (childMonths <= 18) ? true : false;
+    return (childMonths >=3) && (childMonths <= 10) ? true : false;
   }
 }
