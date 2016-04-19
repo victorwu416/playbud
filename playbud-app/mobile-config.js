@@ -1,6 +1,6 @@
 App.info({
   id: 'me.playbud.playbudapp',
-  version: '0.0.3',
+  version: '0.0.4',
   name: 'Playbud',
   description: 'An app to track your child\'s development using toy-based play',
   author: 'Victor Wu'
@@ -36,6 +36,8 @@ App.launchScreens({
   'android_xxhdpi_portrait':  'assets/android/launch/launch-1080x1440.png',
   'android_xxhdpi_landscape': 'assets/android/launch/launch-1440x1080.png'
 });
+
+App.setPreference('BackupWebStorage', 'local');
 
 App.accessRule('http://*');
 App.accessRule('https://*');
