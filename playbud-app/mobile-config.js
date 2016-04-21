@@ -1,6 +1,6 @@
 App.info({
   id: 'me.playbud.playbudapp',
-  version: '0.0.4',
+  version: '0.0.5',
   name: 'Playbud',
   description: 'An app to track your child\'s development using toy-based play',
   author: 'Victor Wu'
