@@ -1,0 +1,86 @@
+<ion-view view-title="Account">
+  <ion-content class="playbud-account">
+
+    <div class="card" ng-show="playbudAccount.user">
+      <div class="item item-body">
+        <div ng-show="!playbudAccount.loggingOut">
+          <p>{{playbudAccount.user.emails[0].address}}</p>
+          <h2>{{playbudAccount.user.profile.childName}}</h2>
+          <p>{{playbudAccount.childMonths}} months</p>
+          <ion-list>
+            <ion-checkbox ng-change="playbudAccount.updateHaveToy();" ng-model="playbudAccount.haveToy">I have the toy <i class="icon ion-cube"></i> (Access all skills)</ion-checkbox>
+          </ion-list>
+          <div ng-show="!playbudAccount.haveToy">
+            <a href="#/toy"><button class="button button-block button-primary-dark">Get Free Toy <i class="icon ion-cube"></i></button></a>
+          </div>
+          <button ng-click="playbudAccount.logOut();" class="button button-block button-primary-light">Log Out</button>
+          <p class="link-help"><a href="#/help" class="link-secondary">Help</a></p>
+        </div>
+        <div ng-show="playbudAccount.loggingOut" class="spinner-loading"><ion-spinner></ion-spinner></div>
+      </div>
+    </div>
+
+    <div class="card" ng-show="!playbudAccount.user && playbudAccount.loggedOutSection==='signUpLogIn'">
+      <div class="item item-body">
+        <button ng-click="playbudAccount.loggedOutSection='signUp';" class="button button-block button-primary-dark">Sign Up</button>
+        <button ng-click="playbudAccount.loggedOutSection='logIn';" class="button button-block button-primary-light">Log In</button>
+      </div>
+    </div>
+
+    <div class="card" ng-show="!playbudAccount.user && playbudAccount.loggedOutSection==='signUp'">
+      <div class="item item-body">
+        <div ng-show="!playbudAccount.signingUp && !playbudAccount.loggingIn">
+          <div class="list">
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Email</span>
+              <input type="email" placeholder="parent@playbud.me" ng-model="playbudAccount.email">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Password</span>
+              <input type="text" placeholder="Something unforgettable" ng-model="playbudAccount.password">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Child's Name</span>
+              <input type="text" placeholder="Chloe" ng-model="playbudAccount.childName">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Child's Birthdate</span>
+              <input type="date" ng-model="playbudAccount.childBirthdate">
+            </label>
+          </div>
+          <div class="col msg-validation">{{playbudAccount.signUpValidationMessage}}</div>
+          <div class="row">
+            <div class="col"><button ng-click="playbudAccount.cancel();" class="button button-block button-primary-light">Cancel</button></div>
+            <div class="col"><button ng-click="playbudAccount.createPlaybudAccountAndLogIn();" class="button button-block button-primary-dark">Create Account</button></div>
+          </div>
+        </div>
+        <div ng-show="playbudAccount.signingUp" class="spinner-loading"><ion-spinner></ion-spinner></div>
+        <div ng-show="playbudAccount.loggingIn" class="spinner-loading"><ion-spinner></ion-spinner></div>
+      </div>
+    </div>
+
+    <div class="card" ng-show="!playbudAccount.user && playbudAccount.loggedOutSection==='logIn'">
+      <div class="item item-body">
+        <div ng-show="!playbudAccount.loggingIn">
+          <div class="list">
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Email</span>
+              <input type="email" placeholder="parent@playbud.me" ng-model="playbudAccount.email">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Password</span>
+              <input type="text" placeholder="Something unforgettable" ng-model="playbudAccount.password">
+            </label>
+          </div>
+          <div class="col msg-validation">{{playbudAccount.logInValidationMessage}}</div>
+          <div class="row">
+            <div class="col"><button ng-click="playbudAccount.cancel();" class="button button-block button-primary-light">Cancel</button></div>
+            <div class="col"><button ng-click="playbudAccount.logIn();" class="button button-block button-primary-dark">Log In</button></div>
+          </div>
+          <p class="link-reset-password"><a onclick="window.open('https://playbud.typeform.com/to/mrHjx9', '_system');" class="link-secondary">Reset Password</a></p>
+        </div>
+        <div ng-show="playbudAccount.loggingIn" class="spinner-loading"><ion-spinner></ion-spinner></div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

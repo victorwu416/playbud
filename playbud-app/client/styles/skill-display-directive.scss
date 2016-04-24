@@ -1,0 +1,29 @@
+.styled-state-not-started:after {
+  content: 'NOT STARTED';
+  color: darkslategrey;
+  font-weight: bold;
+}
+
+.styled-state-tried:after {
+  content: 'TRIED';
+  color: royalblue;
+  font-weight: bold;
+}
+
+.styled-state-getting-there:after {
+  content: 'GETTING THERE';
+  color: royalblue;
+  font-weight: bold;
+}
+
+.styled-state-passed:after {
+  content: 'PASSED';
+  color: #29AB87;
+  font-weight: bold;
+}
+
+.styled-state-skipped:after {
+  content: 'SKIPPED';
+  color: brown;
+  font-weight: bold;
+}

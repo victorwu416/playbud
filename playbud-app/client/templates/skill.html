@@ -1,0 +1,60 @@
+<ion-view title="Skill">
+  <ion-content class="skill">
+    <img class="full-image" src="{{skill.skill.skillImagePath}}">
+
+    <div class="card" ng-show="skill.section==='skill'">
+      <div class="item item-body">
+        <skill-display skill="skill.skill" display-long-description="true" child-name="skill.childName"></skill-display>
+        <div ng-show="skill.skill.state!=='passed' && skill.skill.state!=='skipped'">
+          <button ng-click="skill.section='evaluate'" class="button button-block button-primary-dark">Evaluate</button>
+          <p ng-click="skill.section='skip'" class="link-skip"><span class="link-secondary">Skip</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" ng-show="skill.section==='skip'">
+      <div class="item item-body">
+        <h2>Skip skill <a href="#/how-it-works" class="link-primary"><i class="icon ion-ios-help-outline"></i></a></h2>
+        <p>If you are certain this skill doesn't apply to {{skill.childName}} anymore, then skip it. Can't be reversed.</p>
+        <div class="row">
+          <div class="col"><button ng-click="skill.section='skill'" class="button button-block button-secondary-light">Cancel</button></div>
+          <div class="col"><button ng-click="skill.skipSkill()" class="button button-block button-secondary-dark">Skip</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" ng-show="skill.section==='skip-finish'">
+      <div class="item item-body">
+        <h2>Skipped</h2>
+        <p>This skill has been skipped.</p>
+        <button ng-click="skill.section='skill'" class="button button-block button-secondary-dark">Done</button>
+      </div>
+    </div>
+
+    <div class="card" ng-show="skill.section==='evaluate'">
+      <div class="item item-body">
+        <h2>Evaluate <a href="#/how-it-works" class="link-primary"><i class="icon ion-ios-help-outline"></i></a></h2>
+        <p>Last time you checked, {{skill.childName}} is able to do this skill:</p>
+        <ion-radio
+          ng-repeat="answerOption in skill.answerOptions"
+          ng-value="answerOption.value"
+          ng-model="skill.selectedAnswerOptionValue"
+          >
+          {{answerOption.text}}
+        </ion-radio>
+        <div class="row">
+          <div class="col"><button ng-click="skill.section='skill'" class="button button-block button-primary-light">Cancel</button></div>
+          <div class="col"><button ng-click="skill.submitAnswer()" ng-disabled="!skill.selectedAnswerOptionValue" class="button button-block button-primary-dark">Submit</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" ng-show="skill.section==='evaluate-finish'">
+      <div class="item item-body">
+        <h2>Evaluated</h2>
+        <p>This skill has been evaluated.</p>
+        <button ng-click="skill.section='skill'" class="button button-block button-primary-dark">Done</button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

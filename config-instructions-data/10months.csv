@@ -1,0 +1,16 @@
+months,shortDescription,longDescription,requiresToyString,playImagePath,skillImagePath
+10,"Swipe at and grasp shape, on tummy and one hand","{0} is on their tummy, with one hand supporting themself. Place a shape near {0}'s other hand. {0} is able to grasp the shape for less than a second.",TRUE,/images/skills/pending-240x240.png,/images/skills/pending-600x240.png
+10,"Hear cups and move head, seated independently","{0} is seated independently. Knock two cups together quickly and loudly, allowing {0} to see the motions and hear the sounds. {0} is able to move their head actively in reaction.",TRUE,/images/skills/pending-240x240.png,/images/skills/pending-600x240.png
+10,Grasp third shape,{0} is holding onto two shapes. {0} is able to grasp and hold a third shape for a few seconds. May drop one of the existing shapes.,TRUE,/images/skills/pending-240x240.png,/images/skills/pending-600x240.png
+10,"Crawl toward shape, swipe at and touch","{0} is able to crawl toward a shape, swipe at and touch it.",TRUE,/images/skills/pending-240x240.png,/images/skills/pending-600x240.png
+10,Grasp and release shape,"{0} is holding a shape with one or two hands. {0} is able to put the shape on the ground, as a controlled release.",TRUE,/images/skills/pending-240x240.png,/images/skills/pending-600x240.png
+10,Grasp and release shape into bucket,"{0} is holding a shape with one or two hands. {0} is able to put the shape into the bucket, as a controlled release.",TRUE,/images/skills/pending-240x240.png,/images/skills/pending-600x240.png
+10,Find hidden cup in upward bucket,Hide a cup inside an upward-facing bucket. {0} is able to find the cup in the bucket.,TRUE,/images/skills/pending-240x240.png,/images/skills/pending-600x240.png
+10,Find hidden cup in downward bucket,Hide a cup inside a downward-facing bucket. {0} is able to find the cup in the bucket.,TRUE,/images/skills/pending-240x240.png,/images/skills/pending-600x240.png
+10,Find hidden shape in two upward cups,Hide a shape in one of two upward-facing cups. {0} is able to find the shape.,TRUE,/images/skills/pending-240x240.png,/images/skills/pending-600x240.png
+10,Find hidden shape in two downward cups,Hide a shape in one of two downward-facing cups. {0} is able to find the shape.,TRUE,/images/skills/pending-240x240.png,/images/skills/pending-600x240.png
+10,Go from sitting to on tummy,{0} is able to go from sitting to on their tummy.,FALSE,/images/skills/pending-240x240.png,/images/skills/pending-600x240.png
+10,Go from any position to sitting,{0} is able to go from any position to sitting.,FALSE,/images/skills/pending-240x240.png,/images/skills/pending-600x240.png
+10,"Step up and down in place, in a standing posture and somewhat supported",{0} is in a standing posture and somewhat supported (e.g. holding on to you). {0} is able to step and down in place.,FALSE,/images/skills/pending-240x240.png,/images/skills/pending-600x240.png
+10,"Go from any position to standing posture, supported by furniture",{0} is able to go from any position to a standing posture that is supported by holding on to furniture.,FALSE,/images/skills/pending-240x240.png,/images/skills/pending-600x240.png
+10,Bend wrist to turn hand slightly upward,{0} is able to bend their wrist to turn their hand slightly upward.,FALSE,/images/skills/pending-240x240.png,/images/skills/pending-600x240.png
