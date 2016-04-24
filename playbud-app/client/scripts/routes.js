@@ -10,6 +10,10 @@ function config($stateProvider, $urlRouterProvider) {
       templateUrl: 'client/templates/first.html',
       controller: 'FirstCtrl as first'
     })
+    .state('how-it-works', {
+      url: '/how-it-works',
+      templateUrl: 'client/templates/how-it-works.html'
+    })
     .state('help', {
       url: '/help',
       templateUrl: 'client/templates/help.html'

@@ -14,7 +14,7 @@
 
     <div class="card" ng-show="skill.section==='skip'">
       <div class="item item-body">
-        <h2>Skip skill?</h2>
+        <h2>Skip skill <a href="#/how-it-works" class="link-primary"><i class="icon ion-ios-help-outline"></i></a></h2>
         <p>If you are certain this skill doesn't apply to {{skill.childName}} anymore, then skip it. Can't be reversed.</p>
         <div class="row">
           <div class="col"><button ng-click="skill.section='skill'" class="button button-block button-secondary-light">Cancel</button></div>
@@ -33,7 +33,7 @@
 
     <div class="card" ng-show="skill.section==='evaluate'">
       <div class="item item-body">
-        <h2>Evaluate</h2>
+        <h2>Evaluate <a href="#/how-it-works" class="link-primary"><i class="icon ion-ios-help-outline"></i></a></h2>
         <p>Last time you checked, {{skill.childName}} is able to do this skill:</p>
         <ion-radio
           ng-repeat="answerOption in skill.answerOptions"
@@ -51,7 +51,7 @@
 
     <div class="card" ng-show="skill.section==='evaluate-finish'">
       <div class="item item-body">
-        <h2>Evaluted</h2>
+        <h2>Evaluated</h2>
         <p>This skill has been evaluated.</p>
         <button ng-click="skill.section='skill'" class="button button-block button-primary-dark">Done</button>
       </div>

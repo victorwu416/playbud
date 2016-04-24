@@ -8,13 +8,13 @@
           <h2>{{playbudAccount.user.profile.childName}}</h2>
           <p>{{playbudAccount.childMonths}} months</p>
           <ion-list>
-            <ion-checkbox ng-change="playbudAccount.updateHaveToy();" ng-model="playbudAccount.haveToy">I have the toy (Access all skills)</ion-checkbox>
+            <ion-checkbox ng-change="playbudAccount.updateHaveToy();" ng-model="playbudAccount.haveToy">I have the toy <i class="icon ion-cube"></i> (Access all skills)</ion-checkbox>
           </ion-list>
           <div ng-show="!playbudAccount.haveToy">
-            <a href="#/toy"><button class="button button-block button-primary-dark">Get Free Toy</button></a>
+            <a href="#/toy"><button class="button button-block button-primary-dark">Get Free Toy <i class="icon ion-cube"></i></button></a>
           </div>
           <button ng-click="playbudAccount.logOut();" class="button button-block button-primary-light">Log Out</button>
-          <p class="link-help"><a href="#/help" class="link-secondary">Account Help</a></p>
+          <p class="link-help"><a href="#/help" class="link-secondary">Help</a></p>
         </div>
         <div ng-show="playbudAccount.loggingOut" class="spinner-loading"><ion-spinner></ion-spinner></div>
       </div>
@@ -77,7 +77,7 @@
             <div class="col"><button ng-click="playbudAccount.cancel();" class="button button-block button-primary-light">Cancel</button></div>
             <div class="col"><button ng-click="playbudAccount.logIn();" class="button button-block button-primary-dark">Log In</button></div>
           </div>
-          <p class="link-reset-password"><a href="#/help" class="link-secondary">Reset Password</a></p>
+          <p class="link-reset-password"><a onclick="window.open('https://playbud.typeform.com/to/mrHjx9', '_system');" class="link-secondary">Reset Password</a></p>
         </div>
         <div ng-show="playbudAccount.loggingIn" class="spinner-loading"><ion-spinner></ion-spinner></div>
       </div>

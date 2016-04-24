@@ -1,12 +1,12 @@
 <ion-view view-title="Playbud">
   <ion-content class="first">
-    <img class="full-image" src="/images/first/first-600x240.jpg">
+    <img class="full-image" src="/images/first/first-1200x600.jpg">
 
     <div class="card">
       <div class="item item-body">
         <div ng-show="first.creatingEphemeralAccount" class="spinner-loading"><ion-spinner></ion-spinner></div>
         <div ng-show="!first.creatingEphemeralAccount">
-          <a href="#/tab/playbud-account/signUp"><button class="button button-block button-primary-dark">Sign Up Here!</button></a>
+          <a href="#/tab/playbud-account/signUp"><button class="button button-block button-primary-dark">Sign Up</button></a>
           <a href="#/tab/playbud-account/logIn"><button class="button button-block button-primary-light">Log In</button></a>
           <button ng-click="first.createEphemeralAccount()" class="button button-block button-primary-light">Try without sign up</button>
         </div>
